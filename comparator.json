@@ -1,0 +1,21 @@
+{
+  "challenge_module": "Showcase",
+  "solution_module": "Showcase_WithProofs",
+  "theorem_names": [
+    "WrightsConjecture.three_unitaries",
+    "WrightsConjecture.five_unitary_stability"
+  ],
+  "definition_names": [
+    "WrightsConjecture.NonAtomic",
+    "WrightsConjecture.modulus",
+    "WrightsConjecture.IsOrthogonalProjection",
+    "WrightsConjecture.IsUnitary",
+    "WrightsConjecture.DoesPhaseRetrieval"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}
