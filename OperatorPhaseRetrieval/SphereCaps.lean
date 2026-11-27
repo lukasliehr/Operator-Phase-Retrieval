@@ -5,7 +5,7 @@ import Mathlib.MeasureTheory.Constructions.HaarToSphere
 /-!
 # Spherical-cap probabilities
 
-Lemma 4.2 is proved for canonical normalized surface measure, including centers
+The spherical cap estimate is proved for canonical normalized surface measure, including centers
 in an ambient metric space. The proof compares the radial sector of a cap with
 a cylinder and bounds the unit-ball volume below by a smaller cylinder. It needs
 neither a surface Jacobian calculation nor a gamma-function volume formula.
@@ -283,7 +283,7 @@ theorem uniformSphere_apply (s : Set (sphere (0 : E) 1)) :
       ((volume : Measure E).toSphere univ)⁻¹ * (volume : Measure E).toSphere s := by
   rfl
 
-/-- Lemma 4.2: the probability of an ambient radius-`r` ball under uniform sphere
+/-- The spherical cap estimate: the probability of an ambient radius-`r` ball under uniform sphere
 measure is at most `(4r)^(D-1)`. In particular this applies for every `D ≥ 2`. -/
 theorem uniformSphere_cap_le {G : Type*} [PseudoMetricSpace G]
     (f : E → G) (hf : Isometry f) (z : G) (r : ℝ) (hr0 : 0 < r) (hr : r ≤ 1 / 4) :

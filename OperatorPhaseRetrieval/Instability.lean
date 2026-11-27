@@ -155,7 +155,7 @@ def UniformPhaseRecovery {ι : Type*} (T : ι → SumL2 (L2 μ) →L[ℂ] SumL2 
       (∀ j, ‖pairMagnitude (T j x) - pairMagnitude (T j y)‖ < δ) →
       ∃ ω : ℂ, IsPhase ω ∧ ‖x - ω • y‖ < ε
 
-/-- Remark 3.7: the diagonal block construction has no uniformly continuous
+/-- Instability: the diagonal block construction has no uniformly continuous
 inverse modulo phase on the unit sphere, for any fixed finite phase family.
 The proof even rules out the displayed uniform criterion for arbitrary families. -/
 theorem diagonal_no_uniform_phase_recovery {ι : Type*}

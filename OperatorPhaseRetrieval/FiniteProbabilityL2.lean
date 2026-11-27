@@ -165,7 +165,7 @@ theorem finiteL2Unitary_stable_iff (c : ℝ) (U : Fin 5 → HaarUnitary (Euclide
         (fun k : Fin 5 => magnitude (finiteL2Unitary ι (U k) (finiteL2Equiv ι ℂ z)) -
           magnitude (finiteL2Unitary ι (U k) (finiteL2Equiv ι ℂ w))) j
 
-/-- Proposition 4.4 on the normalized finite probability spaces used in Section 4.3. -/
+/-- The finite-dimensional stability estimate on the normalized finite probability spaces. -/
 theorem finiteL2_haar_stability_failure_le (hn : 50 ≤ Fintype.card ι) :
     (haarFiveProbability ι : Measure (Fin 5 → HaarUnitary (EuclideanSpace ℂ ι)))
       {U | ¬ StableUnitaryFamily stabilityConstant (fun j => finiteL2Unitary ι (U j))} ≤

@@ -6,8 +6,8 @@ noncomputable section
 /-!
 # Amplification with an explicit square-root complement
 
-The conclusion of Proposition 3.5 follows from C, D satisfying the spectral
-identities used in its Step 1. `Complement.lean` constructs D by functional
+The conclusion of the amplification proposition follows from C, D satisfying the spectral
+identities stated as hypotheses below. `Complement.lean` constructs D by functional
 calculus and removes this intermediate hypothesis in the theorem `amplification`.
 -/
 

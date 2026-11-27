@@ -92,7 +92,7 @@ theorem polynomial_hilbertBasis_of_dense [NeZero μ] (hμ : μ ≪ volume)
   rw [← hp n]
   exact polynomialL2_coeFn hm (p n)
 
-/-- Proposition 3.4, with the polynomial density of Lemma 3.3 as a hypothesis. -/
+/-- The rigid operator, with the polynomial density as a hypothesis. -/
 theorem exists_rigid_of_polynomial_density [NeZero μ] (hμ : μ ≪ volume)
     (hm : ∀ p : Polynomial ℂ, MemLp (fun z => p.eval z) 2 μ)
     (hd : (polynomialL2 hm).range.topologicalClosure = ⊤) :

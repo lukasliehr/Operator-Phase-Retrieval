@@ -19,7 +19,7 @@ open scoped ENNReal NNReal Topology InnerProductSpace
 
 namespace OperatorPhaseRetrieval
 
-/-- The operator-construction and stability-passage part of Section 4.5.
+/-- The operator-construction and stability-passage part of the limit construction.
 In particular, the conclusion supplies five surjective complex-linear unitaries
 on the actual limiting `L²` space and normalizes the first to the identity. -/
 theorem fiveUnitaryStability_of_jointLaw_models

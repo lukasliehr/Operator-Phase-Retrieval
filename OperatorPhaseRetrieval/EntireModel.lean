@@ -2,7 +2,7 @@ import OperatorPhaseRetrieval.RigidModel
 
 noncomputable section
 
-/-! Existence and uniqueness of every entire representative in Proposition 3.4. -/
+/-! Existence and uniqueness of every entire representative for the rigid operator. -/
 open Filter ProbabilityTheory MeasureTheory Set
 open scoped InnerProductSpace CStarAlgebra ComplexConjugate Topology NNReal ENNReal
 namespace OperatorPhaseRetrieval
@@ -35,7 +35,7 @@ theorem polynomialSmoothing_unique_entire {μ : Measure ℂ} [NeZero μ] (hμ : 
     polynomialSeries_represents b p hp f
   exact ⟨F,⟨hF,hr⟩,fun G hG => entire_eq_of_ae_eq hμ hG.1 hF (hG.2.symm.trans hr)⟩
 
-/-- All assertions of Proposition 3.4 for an actual measure and operator. -/
+/-- All properties of the rigid operator, for an actual measure and operator. -/
 theorem exists_entire_rigid_model :
     ∃ μ : Measure ℂ, IsFiniteMeasure μ ∧ μ ≠ 0 ∧ μ ≪ volume ∧
       ∃ C : L2 μ →L[ℂ] L2 μ, C.IsPositive ∧ IsSelfAdjoint C ∧ ‖C‖ ≤ (1:ℝ)/8 ∧

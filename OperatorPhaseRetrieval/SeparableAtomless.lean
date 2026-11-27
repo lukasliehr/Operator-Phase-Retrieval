@@ -46,7 +46,7 @@ theorem exists_separable_atomless_spatial_unitary
     simpa using (hC (C.symm f) (C.symm g)).symm
   exact ((hA _ _).trans (hB _ _)).trans he
 
-/-- Theorem 1.1 with exactly the general measure-space assumptions of the paper. -/
+/-- Theorem C for every non-atomic measure space with separable `L²`. -/
 theorem phase_retrieval_of_separable_atomless [SeparableSpace (L2 μ)]
     (hμ : AtomlessMeasure μ) : ProjectionWorks (@ModEq X _ μ) := by
   rcases subsingleton_or_nontrivial (L2 μ) with hzero | hnonzero
@@ -62,7 +62,7 @@ theorem phase_retrieval_of_separable_atomless [SeparableSpace (L2 μ)]
     intro f g
     simpa using (hW (W.symm f) (W.symm g)).symm
 
-/-- Theorem 1.3, preserving both explicit constants and the identity first operator. -/
+/-- Theorem B, preserving both explicit constants and the identity first operator. -/
 theorem fiveUnitaryStability_of_separable_atomless [SeparableSpace (L2 μ)]
     (hμ : AtomlessMeasure μ) : FiveUnitaryStability μ := by
   rcases subsingleton_or_nontrivial (L2 μ) with hzero | hnonzero

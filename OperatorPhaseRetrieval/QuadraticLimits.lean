@@ -3,7 +3,7 @@ import OperatorPhaseRetrieval.JointLawLimit
 /-!
 # Unbounded observables under weak convergence
 
-Uniform fourth moments are used in Section 4.5 to pass quadratic integrals
+Uniform fourth moments are used in the limit construction to pass quadratic integrals
 to the joint weak limit. The main estimate here is proved by continuous
 truncation, with an explicit uniform bound for the truncation error.
 -/
@@ -253,7 +253,7 @@ theorem modulusDifference_second_moment_le
       gcongr
 
 /-- Coordinate fourth moments also give convergence of squared distances
-between magnitudes, the measurement quantities needed by Theorem 1.3. -/
+between magnitudes, the measurement quantities needed by Theorem B. -/
 theorem jointLaw_modulusDifference_integral_tendsto
     {P : ℕ → ProbabilityMeasure (ℕ → ℂ)} {Q : ProbabilityMeasure (ℕ → ℂ)}
     (hlim : Tendsto P atTop (𝓝 Q)) (r s : ℕ) (M N : ℝ≥0)
@@ -292,7 +292,7 @@ theorem coordinateProduct_second_moment_le
       push_cast
       exact add_le_add hM hN
 
-/-- Convergence of the complex inner-product integrals in Section 4.5. -/
+/-- Convergence of the complex inner-product integrals in the limit construction. -/
 theorem jointLaw_coordinate_inner_integral_tendsto
     {P : ℕ → ProbabilityMeasure (ℕ → ℂ)} {Q : ProbabilityMeasure (ℕ → ℂ)}
     (hlim : Tendsto P atTop (𝓝 Q)) (r s : ℕ) (M N : ℝ≥0)

@@ -74,7 +74,7 @@ def finiteGaussianSeed (g : EuclideanSpace ℂ ι) : ι → ℂ :=
 local instance finiteHaarModels_realInner : InnerProductSpace ℝ (EuclideanSpace ℂ ι) :=
   InnerProductSpace.rclikeToReal ℂ _
 
-/-- The representation in the proof of Lemma 4.9, as equality of laws of the
+/-- The Gaussian representation of a uniform vector on the sphere, as equality of laws of the
 whole seed vector. The zero Gaussian vector is a null event. -/
 theorem finiteHaarSeed_gaussian_law :
     (haarSixProbability ι : Measure _).map (finiteHaarSeed ι) =

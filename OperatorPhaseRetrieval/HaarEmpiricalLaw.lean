@@ -91,7 +91,7 @@ theorem normalizedGaussian_error_tendstoInMeasure :
     have h := gaussianMarginalError_continuous.continuousAt.tendsto.comp hz
     simpa only [normalizedGaussian_empiricalLaw_eq, gaussianMarginalError_self, Function.comp_def] using h
 
-/-- The Gaussian marginal condition of Lemma 4.9 holds in probability for the
+/-- The Gaussian marginal condition holds in probability for the
 actual six-Haar finite models, without any concentration assumption. -/
 theorem finiteHaarLaw_error_probability_tendsto (ε : ℝ) (hε : 0 < ε) :
     Tendsto (fun n => (haarSixProbability (Fin (n+1)) : Measure _)

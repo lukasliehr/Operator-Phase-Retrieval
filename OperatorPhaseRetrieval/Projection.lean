@@ -4,7 +4,7 @@ noncomputable section
 
 open MeasureTheory Filter
 
-/-! Algebra of the single-projection phase family, used in Theorem 1.1 and Consequences of Theorem 1.1. -/
+/-! Algebra of the single-projection phase family, used in Theorem C and its consequences. -/
 
 namespace OperatorPhaseRetrieval
 section Algebra

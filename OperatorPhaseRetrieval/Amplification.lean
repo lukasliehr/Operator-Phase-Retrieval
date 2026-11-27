@@ -5,7 +5,7 @@ noncomputable section
 open MeasureTheory Filter
 
 /-!
-# The direct/cross matching argument of Proposition 3.5
+# The direct/cross matching argument of the amplification proposition
 
 `amplification_core` proves the a.e. argument on the actual L2 space. Its explicit
 operator hypotheses are the norm domination and injectivity of a complement D.
@@ -143,7 +143,7 @@ theorem cross_zero {C D : L2 μ →L[ℂ] L2 μ}
   exact ⟨norm_eq_zero.mp ha0, norm_eq_zero.mp hb0,
     norm_eq_zero.mp ha'0, norm_eq_zero.mp hb'0⟩
 
-/-- Proposition 3.5, Steps 2-3, after the explicit block operator identities. -/
+/-- The matching argument of the amplification proposition, after the block operator identities. -/
 theorem amplification_core [NeZero μ] {C D : L2 μ →L[ℂ] L2 μ}
     (hC : ModulusRigid C) (hsmall : ‖C‖^2 < (1:ℝ)/2)
     (hDinj : Function.Injective D)

@@ -41,7 +41,7 @@ theorem measurementDistance_real_smul (U : ι → L2 μ ≃ₗᵢ[ℂ] L2 μ) (a
     |a| • (fun j => magnitude (U j f) - magnitude (U j g)) from rfl, norm_smul,
     Real.norm_eq_abs, abs_abs]
 
-/-- Lemma 4.1 decreases every finite family of modulus measurements simultaneously. -/
+/-- The orthogonal reduction decreases every finite family of modulus measurements at once. -/
 theorem orthogonal_reduction_measurementDistance (U : ι → L2 μ ≃ₗᵢ[ℂ] L2 μ)
     (f g : L2 μ) :
     ∃ u v : L2 μ, ⟪u, v⟫_ℂ = 0 ∧ ‖u‖ ^ 2 + ‖v‖ ^ 2 = phaseDistance f g ^ 2 ∧
@@ -53,7 +53,7 @@ theorem orthogonal_reduction_measurementDistance (U : ι → L2 μ ≃ₗᵢ[ℂ
   exact (magnitudeDistance_mono_ae (hpoint (U j).toLinearEquiv.toLinearMap)).trans
     (norm_le_pi_norm (fun k => magnitude (U k f) - magnitude (U k g)) j)
 
-/-- The homogeneity and orthogonal-reduction step at the end of Proposition 4.4. -/
+/-- The homogeneity and orthogonal-reduction step of the finite-dimensional stability estimate. -/
 theorem stableUnitaryFamily_of_normalized_orthogonal {c : ℝ}
     (U : ι → L2 μ ≃ₗᵢ[ℂ] L2 μ)
     (hU : ∀ u v : L2 μ, ⟪u, v⟫_ℂ = 0 → ‖u‖ ^ 2 + ‖v‖ ^ 2 = 1 →

@@ -3,7 +3,7 @@ import OperatorPhaseRetrieval.DiagonalSmoothing
 /-! # A complement diagonal in the same Hilbert basis
 
 An explicit diagonal complement makes the two-dimensional invariant subspaces
-in Remark 3.6 available without an additional spectral assumption.
+of the sharpness argument available without an additional spectral assumption.
 -/
 
 noncomputable section

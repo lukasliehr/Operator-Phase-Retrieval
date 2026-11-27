@@ -77,7 +77,7 @@ theorem haarSix_smooth_fourthMoment_le (hn : 1 < Fintype.card ι)
   have hm := mul_le_mul_of_nonneg_left hsecond (by positivity : 0 ≤ 240 * L ^ 2)
   nlinarith
 
-theorem haarSix_smooth_fourthMoment_paper_bound (hn : 1 < Fintype.card ι)
+theorem haarSix_smooth_fourthMoment_bound (hn : 1 < Fintype.card ι)
     (F : (Fin 6 → HaarUnitary (EuclideanSpace ℂ ι)) → ℂ) (hF : Continuous F)
     (D : (Fin 6 → HaarUnitary (EuclideanSpace ℂ ι)) → HermitianSix ι →L[ℝ] ℂ)
     (hD : Continuous D)

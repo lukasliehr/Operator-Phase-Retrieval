@@ -23,7 +23,7 @@ theorem finiteTransformedExpression_coordinate_fourthMoment_le
       ∂(haarSixProbability ι : Measure _)) ≤ 8 * (t.radius : ℝ) ^ 4 + 2304 * (t.lipBound : ℝ) ^ 4 := by
   obtain ⟨hF, D, hD, hderiv, hbound⟩ :=
     finiteTransformedExpression_coordinate_hasBoundedPathDifferential ι ψ hψ hzero hsmooth t i
-  apply haarSix_smooth_fourthMoment_paper_bound ι hn _ hF D hD
+  apply haarSix_smooth_fourthMoment_bound ι hn _ hF D hD
     (fun U A s _ => hderiv U A s) _ _ (NNReal.coe_nonneg _)
     (finiteTransformedExpression_coordinate_secondMoment_le ι ψ hψ hzero t i)
   intro U

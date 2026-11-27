@@ -26,7 +26,7 @@ theorem coordinateModulus_dist_smul (a : ℂ) (f g : EuclideanSpace ℂ ι) :
       ‖a‖ * dist (coordinateModulus f) (coordinateModulus g) := by
   rw [coordinateModulus_smul, coordinateModulus_smul, dist_smul₀, Real.norm_of_nonneg (norm_nonneg a)]
 
-/-- Homogeneity and Lemma 4.1 extend a lower bound on normalized orthogonal
+/-- Homogeneity and the orthogonal reduction extend a lower bound on normalized orthogonal
 pairs to all pairs of finite-dimensional vectors. -/
 theorem coordinateStability_of_normalized
     (U : Fin 5 → HaarUnitary (EuclideanSpace ℂ ι)) (c : ℝ)

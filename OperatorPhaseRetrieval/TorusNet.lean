@@ -4,9 +4,9 @@ import Mathlib.Analysis.Real.Pi.Bounds
 /-!
 # Phase grids and conditional small-ball estimates
 
-Construct a finite phase grid and prove the exact small-ball bound of Lemma 4.3
+Construct a finite phase grid and prove the exact small-ball bound
 for uniform measure on the sphere in a fixed complex orthogonal complement.
-The grid has at most `(13/t)^n` points; this larger grid still gives the paper's
+The grid has at most `(13/t)^n` points, which still gives the
 constant `2^(11n)`. The Haar-frame identification is carried out in `HaarSmallBall.lean`.
 -/
 
@@ -196,7 +196,7 @@ theorem phase_grid_smallBall_constant (n : ℕ) (hn : 3 ≤ n) (t : ℝ) (ht : 0
     _ ≤ (2048 : ℝ) ^ n * t ^ (n - 3) := by gcongr; norm_num
     _ = _ := by rw [pow_mul]; norm_num
 
-/-- The exponent and constant of Lemma 4.3 on the actual uniform sphere of
+/-- The exponent and constant of the small-ball estimate on the actual uniform sphere of
 a real space of dimension `2n-2`. The Haar-frame identification is separate. -/
 theorem uniformSphere_modulus_smallBall_le_exp {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
@@ -300,7 +300,7 @@ theorem orthogonalComplement_nontrivial (hn : 3 ≤ Fintype.card ι)
     omega)
 
 /-- The small-ball bound for a uniform unit vector in the complex orthogonal
-complement of a fixed unit vector, as used conditionally in Lemma 4.3. -/
+complement of a fixed unit vector, as used conditionally in the small-ball estimate. -/
 theorem uniformSphere_orthogonal_modulus_smallBall (hn : 3 ≤ Fintype.card ι)
     (x : EuclideanSpace ℂ ι) (hx : ‖x‖ = 1)
     (a b t : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a ^ 2 + b ^ 2 = 1)

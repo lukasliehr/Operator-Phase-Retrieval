@@ -5,7 +5,7 @@ import OperatorPhaseRetrieval.SpatialExistence
 /-!
 # Unitary stability estimates and their transport
 
-These results prove the deterministic assembly steps in Section 4.5.
+These results prove the deterministic assembly steps of Theorem B.
 `FiveUnitaryStability` states the existence of five unitaries with explicit stability constants.
 -/
 
@@ -36,7 +36,7 @@ def measurementDistance (U : ι → L2 μ ≃ₗᵢ[ℂ] L2 μ) (f g : L2 μ) : 
 theorem measurementDistance_nonneg (U : ι → L2 μ ≃ₗᵢ[ℂ] L2 μ) (f g : L2 μ) :
     0 ≤ measurementDistance U f g := norm_nonneg _
 
-/-- The upper bound in the proof of Theorem 1.3 holds for every finite family of unitaries. -/
+/-- The measurement distance is at most the phase distance, for every finite family of unitaries. -/
 theorem measurementDistance_le_phaseDistance (U : ι → L2 μ ≃ₗᵢ[ℂ] L2 μ) (f g : L2 μ) :
     measurementDistance U f g ≤ phaseDistance f g := by
   apply (pi_norm_le_iff_of_nonneg (phaseDistance_nonneg f g)).mpr
@@ -118,14 +118,14 @@ theorem stableUnitaryFamily_transport (W : L2 μ ≃ₗᵢ[ℂ] L2 ν)
   rw [hp] at h
   exact h
 
-/-- The constant `2⁻¹⁰⁰` of Proposition 4.4, written as a positive reciprocal power. -/
+/-- The stability constant `2⁻¹⁰⁰`, written as a positive reciprocal power. -/
 def stabilityConstant : ℝ := 1 / (2 : ℝ) ^ 100
 
 theorem stabilityConstant_pos : 0 < stabilityConstant := by
   unfold stabilityConstant
   positivity
 
-/-- Theorem 1.3 as a proposition, with five surjective unitaries and first measurement identity.
+/-- Theorem B as a proposition, with five surjective unitaries and first measurement identity.
 The existence of such a family is proved in `SeparableAtomless.lean`. -/
 def FiveUnitaryStability (μ : Measure X) : Prop :=
   ∃ U : Fin 5 → L2 μ ≃ₗᵢ[ℂ] L2 μ,
@@ -139,7 +139,7 @@ theorem fiveUnitaryStability_of_family (U : Fin 5 → L2 μ ≃ₗᵢ[ℂ] L2 μ
   refine ⟨normalizeUnitaryFamily U 0, normalizeUnitaryFamily_identity U 0, fun f g => ?_⟩
   exact ⟨stableUnitaryFamily_normalize hU 0 f g, measurementDistance_le_phaseDistance _ f g⟩
 
-/-- The standard-space transfer needed by Theorem 1.3 and Remark 4.16. -/
+/-- The transfer of Theorem B between standard Borel spaces. -/
 theorem fiveUnitaryStability_transfer [StandardBorelSpace X] [StandardBorelSpace Y]
     [SigmaFinite μ] [SigmaFinite ν] [NeZero μ] [NeZero ν]
     [NullSingletonClass μ] [NullSingletonClass ν]

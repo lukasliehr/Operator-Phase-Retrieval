@@ -4,7 +4,7 @@ import Mathlib.Tactic.DeriveCountable
 /-!
 # Countable expressions and dimension-independent bounds
 
-The syntax in Section 4.3 includes both each measurement and its inverse.
+The syntax of expressions includes both each measurement and its inverse.
 The estimates below hold on every probability space. In particular their
 constants do not depend on the size of a normalized finite counting space.
 -/

@@ -115,7 +115,7 @@ theorem small_phase_triple (ε : ℝ) (hε : 0<ε) :
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
-/-- Near-identity assertion of Consequences of Theorem 1.1, given a working projection. -/
+/-- Near-identity consequence of Theorem C, given a working projection. -/
 theorem near_identity_of_projection (R : H → H → Prop) (P : H →L[ℂ] H)
     (hP : IsOrthogonalProjection P)
     (hretr : ∀ η : Fin 3 → ℂ, (∀ j, IsPhase (η j)) → Function.Injective η →

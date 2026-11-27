@@ -3,8 +3,8 @@ import OperatorPhaseRetrieval.L2
 /-!
 # Distance modulo a constant complex phase
 
-The distance `d_𝕋(f, g) = inf_{|ω|=1} ‖f - ωg‖` of Section 2.
-We prove that the infimum is attained and the inner-product formula (2.1).
+The distance `d(f, g) = inf_{|ω|=1} ‖f - ωg‖` modulo a global phase.
+We prove that the infimum is attained and that `d(f, g)² = ‖f‖² + ‖g‖² - 2|⟨f, g⟩|`.
 -/
 
 noncomputable section
@@ -62,7 +62,7 @@ theorem phaseDistance_attained (f g : H) :
   · rintro r ⟨ζ, hζ, rfl⟩
     exact hmin ζ hζ
 
-/-- Equation (2.1), valid in every complex inner product space. -/
+/-- The formula `d(f, g)² = ‖f‖² + ‖g‖² - 2|⟨f, g⟩|`, valid in every complex inner product space. -/
 theorem phaseDistance_sq (f g : H) :
     phaseDistance f g ^ 2 = ‖f‖ ^ 2 + ‖g‖ ^ 2 - 2 * ‖⟪f, g⟫_ℂ‖ := by
   obtain ⟨ω, hω, hd, he⟩ := phaseDistance_attained f g

@@ -3,7 +3,7 @@ import OperatorPhaseRetrieval.StabilityLimits
 /-!
 # Unitary extension from a dense family with preserved Gram matrix
 
-This supplies the operator-extension step of Section 4.5, including
+This supplies the operator-extension step of the limit construction, including
 well-definedness on linear relations and surjectivity. The families and their
 Gram identities are explicit inputs; the finite models must provide them.
 -/

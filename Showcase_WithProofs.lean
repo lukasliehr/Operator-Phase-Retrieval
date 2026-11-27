@@ -1,20 +1,24 @@
 import OperatorPhaseRetrieval
 
 /-!
-# Stable recovery from magnitudes of unitary operators
+# Informational completeness for pure quantum states
 
-Theorems 1.1 and 1.3 of the paper by L. Liehr, D. Omer, B. Pineau and M. A. Taylor.
-The definitions and statements are those of `Showcase.lean`, here with proofs.
+Theorems A and B are the two main results of the paper "Informational completeness for pure
+quantum states: minimality and stability" by L. Liehr, D. Omer, B. Pineau and M. A. Taylor.
+Theorem C is a further result. The definitions and statements are those of `Showcase.lean`.
 -/
 
-open MeasureTheory TopologicalSpace
+open MeasureTheory TopologicalSpace Complex
 
-namespace WrightsConjecture
+namespace InformationalCompleteness
 
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X}
 
-/-- The complex Hilbert space `L²(X,μ)`. -/
+/-- The Hilbert space `L²(X,μ)` of wave functions. -/
 local notation "L²(" μ ")" => Lp ℂ 2 μ
+
+/-- The bounded linear operators on `L²(X,μ)`. -/
+abbrev Operator (μ : Measure X) := L²(μ) →L[ℂ] L²(μ)
 
 /-- The unit circle in the complex plane. -/
 local notation "𝕋" => Circle
@@ -23,34 +27,44 @@ local notation "𝕋" => Circle
 def NonAtomic (μ : Measure X) : Prop :=
   ∀ s, MeasurableSet s → 0 < μ s → ∃ t ⊆ s, MeasurableSet t ∧ 0 < μ t ∧ 0 < μ (s \ t)
 
-/-- The modulus `|f|` of `f ∈ L²(X,μ)`, a real-valued function in `L²(X,μ)`. -/
-noncomputable def modulus (f : L²(μ)) : Lp ℝ 2 μ :=
-  MemLp.toLp (fun x => ‖f x‖) (Lp.memLp f).norm
+/-- The modulus `|ψ|` of `ψ ∈ L²(X,μ)`, a real-valued function in `L²(X,μ)`. -/
+noncomputable def modulus (ψ : L²(μ)) : Lp ℝ 2 μ :=
+  MemLp.toLp (fun x => ‖ψ x‖) (Lp.memLp ψ).norm
 
-local notation "|" f "|" => modulus f
+local notation "|" ψ "|" => modulus ψ
 
-/-- A bounded linear operator `P` on `L²(X,μ)` is an orthogonal projection if `P² = P = P*`. -/
-def IsOrthogonalProjection (P : L²(μ) →L[ℂ] L²(μ)) : Prop := P * P = P ∧ star P = P
+/-- A unitary operator is a surjective linear isometry. -/
+def IsUnitary (U : Operator μ) : Prop := Isometry U ∧ Function.Surjective U
 
-/-- A bounded linear operator `U` on `L²(X,μ)` is unitary if it is a surjective isometry. -/
-def IsUnitary (U : L²(μ) →L[ℂ] L²(μ)) : Prop := Isometry U ∧ Function.Surjective U
+/-- An orthogonal projection `P` satisfies `P² = P = P*`. -/
+def IsOrthogonalProjection (P : Operator μ) : Prop := P * P = P ∧ star P = P
 
-/-- The operators `U j` do phase retrieval. -/
-def DoesPhaseRetrieval {J : Type*} (U : J → L²(μ) →L[ℂ] L²(μ)) : Prop :=
-  ∀ f g : L²(μ), (∀ j, |U j f| = |U j g|) → ∃ c : 𝕋, f = c • g
+/-- `U₁, …, Uₘ` are informationally complete with respect to pure states. -/
+def InformationallyComplete {m : ℕ} (U : Fin m → Operator μ) : Prop :=
+  ∀ ψ φ : L²(μ), (∀ j, |U j ψ| = |U j φ|) → ∃ θ : ℝ, φ = exp (θ * I) • ψ
 
-/-- Theorem 1.1: three unitary operators do phase retrieval. -/
-theorem three_unitaries (hμ : NonAtomic μ) [SeparableSpace L²(μ)] :
-    ∃ P : L²(μ) →L[ℂ] L²(μ), IsOrthogonalProjection P ∧
-      ∀ η : Fin 3 → 𝕋, Function.Injective η →
-        let U := fun j => 1 + ((η j : ℂ) - 1) • P
-        (∀ j, IsUnitary (U j)) ∧ DoesPhaseRetrieval U := by
-  exact OperatorPhaseRetrieval.three_unitaries μ hμ
+/-- The distance `d(ψ,φ) = min_θ ‖ψ - e^{iθ}φ‖` of `ψ` and `φ` modulo global phase. -/
+noncomputable def d (ψ φ : L²(μ)) : ℝ := ⨅ θ : ℝ, ‖ψ - exp (θ * I) • φ‖
 
-/-- Theorem 1.3: five unitary operators do stable phase retrieval. -/
-theorem five_unitary_stability (hμ : NonAtomic μ) [SeparableSpace L²(μ)] :
-    ∃ U : Fin 5 → L²(μ) →L[ℂ] L²(μ), (∀ j, IsUnitary (U j)) ∧ ∃ C > 0, ∀ f g : L²(μ),
-      ⨅ ω : 𝕋, ‖f - ω • g‖ ≤ C * ⨆ j, ‖|U j f| - |U j g|‖ := by
-  exact OperatorPhaseRetrieval.five_unitary_stability μ hμ
+/-- `U₁, …, Uₘ` determine pure states stably. -/
+def DeterminePureStatesStably {m : ℕ} (U : Fin m → Operator μ) : Prop :=
+  ∃ C > 0, ∀ ψ φ : L²(μ), d ψ φ ≤ C * ⨆ j, ‖|U j ψ| - |U j φ|‖
 
-end WrightsConjecture
+/-- Theorem A: the identity and a unitary operator close to it are informationally complete. -/
+theorem uniqueness_from_two_measurements (hμ : NonAtomic μ) [SeparableSpace L²(μ)] :
+    ∀ ε > 0, ∃ U : Operator μ, IsUnitary U ∧ ‖U - 1‖ < ε ∧ InformationallyComplete ![1, U] := by
+  exact OperatorPhaseRetrieval.uniqueness_from_two_measurements μ hμ
+
+/-- Theorem B: five unitary operators, the first one the identity, determine pure states stably. -/
+theorem stability_from_five_measurements (hμ : NonAtomic μ) [SeparableSpace L²(μ)] :
+    ∃ U : Fin 5 → Operator μ, (∀ j, IsUnitary (U j)) ∧ U 0 = 1 ∧ DeterminePureStatesStably U := by
+  exact OperatorPhaseRetrieval.stability_from_five_measurements μ hμ
+
+/-- Theorem C: three unitary operators built from one projection are informationally complete. -/
+theorem uniqueness_from_three_measurements (hμ : NonAtomic μ) [SeparableSpace L²(μ)] :
+    ∃ P : Operator μ, IsOrthogonalProjection P ∧ ∀ η : Fin 3 → 𝕋, Function.Injective η →
+      let U := fun j => 1 + ((η j : ℂ) - 1) • P
+      (∀ j, IsUnitary (U j)) ∧ InformationallyComplete U := by
+  exact OperatorPhaseRetrieval.uniqueness_from_three_measurements μ hμ
+
+end InformationalCompleteness

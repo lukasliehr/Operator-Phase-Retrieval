@@ -80,10 +80,10 @@ theorem transfer_projectionWorks (W : H ≃ₗᵢ[ℂ] G)
 
 abbrev RealL2 := L2 (volume : Measure ℝ)
 
-/-- Theorem 1.1 on `L²(ℝ)`, proved by `main` in Main.lean. -/
+/-- Theorem C on `L²(ℝ)`, proved by `main` in Main.lean. -/
 def MainStatement : Prop := ProjectionWorks (@ModEq ℝ _ volume)
 
-/-- Section 3.5 assembly, conditional on the analytic and spatial constructions.
+/-- Assembly of Theorem C, conditional on the analytic and spatial constructions.
 
 The hypotheses are discharged by RigidModel.lean and SpatialExistence.lean;
 Main.lean instantiates this assembly theorem.

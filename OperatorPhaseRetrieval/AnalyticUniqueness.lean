@@ -256,7 +256,7 @@ theorem holomorphic_phase_of_norm_eq {F G : ℂ → ℂ} {U : Set ℂ}
   filter_upwards [he, hlocal] with z hz hzu
   exact (div_eq_iff hzu.2).mp hz
 
-/-- Lemma 3.2 for entire functions: positive-area modulus agreement fixes
+/-- Modulus uniqueness for entire functions: positive-area modulus agreement fixes
 one global phase. This is the form needed for the smoothing construction. -/
 theorem entire_phase_of_positive_measure {F G : ℂ → ℂ}
     (hF : AnalyticOnNhd ℂ F univ) (hG : AnalyticOnNhd ℂ G univ)
@@ -266,7 +266,7 @@ theorem entire_phase_of_positive_measure {F G : ℂ → ℂ}
     isPreconnected_univ (fun z _ => entire_norm_eq_of_positive_measure hF hG hpos z)
   exact ⟨ω,hω,fun z => h (mem_univ z)⟩
 
-/-- Lemma 3.2 on an arbitrary connected open domain, with the agreement
+/-- Modulus uniqueness on an arbitrary connected open domain, with the agreement
 set measured in planar Lebesgue measure. -/
 theorem holomorphic_phase_of_positive_measure {F G : ℂ → ℂ} {U : Set ℂ}
     (hF : AnalyticOnNhd ℂ F U) (hG : AnalyticOnNhd ℂ G U)
@@ -293,7 +293,7 @@ theorem holomorphic_phase_of_positive_measure {F G : ℂ → ℂ} {U : Set ℂ}
     simp only [Complex.normSq_eq_norm_sq, hnw, sub_self]
   exact (ne_of_gt hpos) hzero
 
-/-- The a.e.-agreement formulation of Lemma 3.2, including arbitrary
+/-- The a.e.-agreement formulation of modulus uniqueness, including arbitrary
 measurable positive-area subsets of the connected open domain. -/
 theorem holomorphic_phase_of_ae_norm_eq {F G : ℂ → ℂ} {U S : Set ℂ}
     (hF : AnalyticOnNhd ℂ F U) (hG : AnalyticOnNhd ℂ G U)

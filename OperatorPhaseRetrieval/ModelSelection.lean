@@ -3,7 +3,7 @@ import OperatorPhaseRetrieval.ExpressionBounds
 /-!
 # Simultaneous control of countably many moments
 
-This is the probability-selection step of Lemma 4.10. It takes moment estimates
+This is the probability-selection step in the proof of Theorem B. It takes moment estimates
 and bounds for the two other exceptional events as explicit hypotheses; it does
 not assume the existence of a stable unitary family.
 -/
@@ -15,7 +15,7 @@ open scoped ENNReal NNReal
 
 namespace OperatorPhaseRetrieval
 
-/-- The paper numbers expressions starting at one. Lean starts at zero, hence `r + 5`. -/
+/-- The threshold for the fourth moment of the expression with index `r`. -/
 def momentThreshold (r : ℕ) (M : ℝ≥0) : ℝ≥0 := 2 ^ (r + 5) * (1 + M)
 
 theorem momentThreshold_pos (r : ℕ) (M : ℝ≥0) : 0 < momentThreshold r M := by
@@ -62,7 +62,7 @@ theorem measure_exists_moment_excess_le (F : ℕ → Ω → ℝ≥0∞)
   exact (measure_iUnion_le _).trans ((ENNReal.tsum_le_tsum fun r =>
     measure_moment_excess_le (F r) (hF r) (M r) (hM r) r).trans_eq tsum_moment_failure_weights)
 
-/-- The three exceptional events in Lemma 4.10 cannot cover the probability space. -/
+/-- The three exceptional events of the selection step cannot cover the probability space. -/
 theorem exists_simultaneously_good [IsProbabilityMeasure P]
     (F : ℕ → Ω → ℝ≥0∞) (hF : ∀ r, AEMeasurable (F r) P)
     (M : ℕ → ℝ≥0) (hM : ∀ r, ∫⁻ x, F r x ∂P ≤ M r)

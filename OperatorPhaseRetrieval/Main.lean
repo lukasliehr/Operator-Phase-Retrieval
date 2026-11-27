@@ -8,7 +8,7 @@ import OperatorPhaseRetrieval.StandardBorelDouble
 
 noncomputable section
 
-/-! Unconditional main theorem and corollaries of the paper. -/
+/-! Theorem C on `L²(ℝ)` and its consequences. -/
 open Filter ProbabilityTheory Set MeasureTheory
 open scoped InnerProductSpace CStarAlgebra ComplexConjugate Topology NNReal ENNReal
 namespace OperatorPhaseRetrieval
@@ -31,7 +31,7 @@ theorem exists_double_spatial_unitary {X Y : Type*} [MeasurableSpace X] [Measura
     simpa only [W, LinearIsometryEquiv.trans_apply, LinearIsometryEquiv.apply_symm_apply] using hd
   exact he.symm.trans (hV f g)
 
-/-- Theorem 1.1, with no analytic-model or spatial-isomorphism hypotheses. -/
+/-- Theorem C on `L²(ℝ)`, with no analytic-model or spatial-isomorphism hypotheses. -/
 theorem main : MainStatement := by
   obtain ⟨μ,hfin,hμ0,hμv,C,hC,hsmall,hcompact,hinj,hrigid⟩ := exists_rigid_model
   let : IsFiniteMeasure μ := hfin
@@ -40,7 +40,7 @@ theorem main : MainStatement := by
   obtain ⟨W,hW⟩ := exists_double_spatial_unitary μ (volume : Measure ℝ)
   exact main_of_rigid_spatial_model C hC.isSelfAdjoint hsmall hrigid W hW
 
-/-- Consequences of Theorem 1.1: a unitary of order three gives phase retrieval with I,U,U². -/
+/-- Consequence of Theorem C: a unitary of order three gives phase retrieval with I,U,U². -/
 theorem exists_order_three_phase_retrieval :
     ∃ U : RealL2 →L[ℂ] RealL2, IsUnitary U ∧ U^3=1 ∧
       ∀ f g, ModEq f g → ModEq (U f) (U g) → ModEq ((U^2) f) ((U^2) g) →
@@ -48,7 +48,7 @@ theorem exists_order_three_phase_retrieval :
   obtain ⟨P,hP,hretr⟩ := main
   exact order_three_of_projection ModEq P hP (fun η hη hi => (hretr η hη hi).2)
 
-/-- Consequences of Theorem 1.1: both nontrivial measurements can be arbitrarily near the identity. -/
+/-- Consequence of Theorem C: both nontrivial measurements can be arbitrarily near the identity. -/
 theorem exists_near_identity_phase_retrieval (ε : ℝ) (hε : 0 < ε) :
     ∃ U : RealL2 →L[ℂ] RealL2, IsUnitary U ∧ ‖U-1‖<ε ∧ ‖U^2-1‖<ε ∧
       ∀ f g, ModEq f g → ModEq (U f) (U g) → ModEq ((U^2) f) ((U^2) g) →
@@ -56,7 +56,7 @@ theorem exists_near_identity_phase_retrieval (ε : ℝ) (hε : 0 < ε) :
   obtain ⟨P,hP,hretr⟩ := main
   exact near_identity_of_projection ModEq P hP (fun η hη hi => (hretr η hη hi).2) ε hε
 
-/-- Remark 4.16 on every nonzero atomless sigma-finite standard Borel measure space. -/
+/-- Theorem C on every nonzero atomless sigma-finite standard Borel measure space. -/
 theorem phase_retrieval_on_standardBorel {X : Type*} [MeasurableSpace X]
     [StandardBorelSpace X] (μ : Measure X) [SigmaFinite μ] [NeZero μ] [NullSingletonClass μ] :
     ProjectionWorks (@ModEq X _ μ) := by

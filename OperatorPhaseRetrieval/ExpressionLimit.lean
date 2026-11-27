@@ -4,10 +4,10 @@ import OperatorPhaseRetrieval.LimitStability
 /-!
 # The limit construction from evaluated models
 
-This file assembles the deterministic and compactness portions of Section 4.5.
+This file assembles the deterministic and compactness portions of the limit construction for Theorem B.
 Uniform finite-model stability, fourth moments, and a convergent atomless
 marginal are explicit quantitative hypotheses. Their existence is the
-probabilistic part of Theorem 1.3.
+probabilistic part of Theorem B.
 -/
 
 noncomputable section

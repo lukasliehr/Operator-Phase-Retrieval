@@ -20,7 +20,7 @@ theorem sigmaFinite_spatial_unitary (μ : Measure X) [SigmaFinite μ] [NeZero μ
   obtain ⟨B, hB⟩ := probability_spatial_unitary μ.toFinite
   exact ⟨B.trans A, fun f g => (hA (B f) (B g)).trans (hB f g)⟩
 
-/-- Lemma 2.1: existence, including normalization, null sets, and density weights. -/
+/-- The transfer lemma: existence, including normalization, null sets, and density weights. -/
 theorem exists_spatial_unitary (μ : Measure X) (ν : Measure Y)
     [SigmaFinite μ] [SigmaFinite ν] [NeZero μ] [NeZero ν] [NullSingletonClass μ] [NullSingletonClass ν] :
     ∃ W : L2 μ ≃ₗᵢ[ℂ] L2 ν, ∀ f g, ModEq (W f) (W g) ↔ ModEq f g := by

@@ -4,7 +4,7 @@ import OperatorPhaseRetrieval.CoordinateStability
 /-!
 # Uniform finite-dimensional stability
 
-Proposition 4.4 is proved for five independent canonical Haar unitaries.
+The stability estimate is proved for five independent canonical Haar unitaries.
 The event quantifies the chosen family before all pairs of vectors.
 Its measurability, the exact success-probability bound, and existence are proved.
 -/
@@ -69,7 +69,7 @@ theorem coordinate_stability_failure_subset (c : ℝ) :
   by_contra! hbad
   exact h ⟨p, hp, hbad⟩
 
-/-- Proposition 4.4: the bad families have probability at most `2^(1485-32n)`.
+/-- The bad families have probability at most `2^(1485-32n)`.
 The family is quantified before all pairs of vectors, so this is uniform stability. -/
 theorem haarFive_stability_failure_le (hn : 50 ≤ Fintype.card ι) :
     (haarFiveProbability ι : Measure (Fin 5 → HaarUnitary (EuclideanSpace ℂ ι)))
@@ -78,7 +78,7 @@ theorem haarFive_stability_failure_le (hn : 50 ≤ Fintype.card ι) :
   (measure_mono (coordinate_stability_failure_subset ((2 : ℝ) ^ (-100 : ℤ)))).trans
     (haarFive_normalized_failure_dyadic hn)
 
-/-- The success-probability formulation of Proposition 4.4. -/
+/-- The success-probability formulation of the finite-dimensional stability estimate. -/
 theorem haarFive_stability_probability (hn : 50 ≤ Fintype.card ι) :
     1 - ENNReal.ofReal ((2 : ℝ) ^ (1485 - 32 * (Fintype.card ι : ℤ))) ≤
       (haarFiveProbability ι : Measure (Fin 5 → HaarUnitary (EuclideanSpace ℂ ι)))

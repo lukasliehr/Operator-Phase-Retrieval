@@ -32,7 +32,7 @@ variable {X : Type*} [MeasurableSpace X] {μ : Measure X}
 
 def ModEq (f g : L2 μ) : Prop := ∀ᵐ t ∂μ, ‖f t‖ = ‖g t‖
 
-/-- The exact positive-measure modulus-rigidity property in Proposition 3.4. -/
+/-- Modulus rigidity: moduli agreeing on a set of positive measure force equality up to phase. -/
 def ModulusRigid (C : L2 μ →L[ℂ] L2 μ) : Prop :=
   ∀ f g, 0 < μ {t | ‖C f t‖ = ‖C g t‖} → PhaseRelated f g
 

@@ -2,7 +2,7 @@ import OperatorPhaseRetrieval.TwoMeasurements
 import OperatorPhaseRetrieval.DiagonalComplement
 import OperatorPhaseRetrieval.AmplificationTheorem
 
-/-! # Sharpness of the single-projection family (Remark 3.6) -/
+/-! # Sharpness of the single-projection family of Theorem C -/
 
 noncomputable section
 

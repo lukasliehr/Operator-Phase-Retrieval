@@ -2,16 +2,11 @@
   "challenge_module": "Showcase",
   "solution_module": "Showcase_WithProofs",
   "theorem_names": [
-    "WrightsConjecture.three_unitaries",
-    "WrightsConjecture.five_unitary_stability"
+    "InformationalCompleteness.uniqueness_from_two_measurements",
+    "InformationalCompleteness.stability_from_five_measurements",
+    "InformationalCompleteness.uniqueness_from_three_measurements"
   ],
-  "definition_names": [
-    "WrightsConjecture.NonAtomic",
-    "WrightsConjecture.modulus",
-    "WrightsConjecture.IsOrthogonalProjection",
-    "WrightsConjecture.IsUnitary",
-    "WrightsConjecture.DoesPhaseRetrieval"
-  ],
+  "definition_names": [],
   "permitted_axioms": [
     "propext",
     "Quot.sound",

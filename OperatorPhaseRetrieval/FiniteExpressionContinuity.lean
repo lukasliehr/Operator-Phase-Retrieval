@@ -92,7 +92,7 @@ theorem finiteExpression_coordinate_continuous (t : StabilityExpression) (i : ι
     Continuous (fun U => t.eval (finiteHaarModel ι U) i) :=
   (finiteL2_coordinate_continuous ι i).comp (finiteExpression_continuous ι t)
 
-/-- The random fourth moment appearing in Lemma 4.8 and the Markov selection step. -/
+/-- The random fourth moment appearing in the moment bound and the Markov selection step. -/
 def finiteExpressionFourthMoment (t : StabilityExpression)
     (U : Fin 6 → HaarUnitary (EuclideanSpace ℂ ι)) : ℝ :=
   (Fintype.card ι : ℝ)⁻¹ * ∑ i, ‖t.eval (finiteHaarModel ι U) i‖ ^ 4

@@ -7,7 +7,7 @@ import OperatorPhaseRetrieval.ExpressionLimit
 The marginal and stability failure estimates are proved in the imported modules.
 The dimension-independent expression fourth moments are explicit inputs here.
 `FiveUnitaryStability.lean` proves those inputs and derives the unconditional
-Theorem 1.3 and finite-model selection.
+Theorem B and finite-model selection.
 -/
 
 noncomputable section
@@ -17,7 +17,7 @@ open scoped ENNReal NNReal Topology
 
 namespace OperatorPhaseRetrieval
 
-/-- The quantitative input from Lemma 4.8, for actual Haar matrices. -/
+/-- The fourth-moment bound as a quantitative input, for actual Haar matrices. -/
 def HaarExpressionMomentBounds (M : StabilityExpression → ℝ≥0) : Prop :=
   ∀ n t, ∫⁻ U, ENNReal.ofReal (finiteExpressionFourthMoment (Fin (n+1)) t U)
     ∂(haarSixProbability (Fin (n+1)) : Measure _) ≤ M t
@@ -88,7 +88,7 @@ theorem finiteHaarLaw_jointLaw_seed (n : ℕ)
   simp only [Function.comp_def, StabilityExpression.coordinateMap,
     StabilityExpression.ofIndex_index, StabilityExpression.eval, finiteHaarSeed]
 
-/-- All of Theorem 1.3 follows from the uniform expectation
+/-- All of Theorem B follows from the uniform expectation
 estimate for the actual finite Haar expressions. This theorem retains that
 estimate as an explicit hypothesis. -/
 theorem fiveUnitaryStability_real_of_haar_moment_bounds

@@ -65,7 +65,7 @@ theorem completionL2Equiv_modEq (f g : L2 μ) :
     filter_upwards [h,hf,hg] with x hx hy hz
     exact Eq.trans (congrArg norm hy) (Eq.trans hx (Eq.symm (congrArg norm hz)))
 
-/-- Lemma 2.1 also holds between completed standard Borel measure spaces. -/
+/-- The transfer lemma also holds between completed standard Borel measure spaces. -/
 theorem exists_spatial_unitary_completions {Y : Type*} [MeasurableSpace Y]
     [StandardBorelSpace X] [StandardBorelSpace Y] (ν : Measure Y)
     [SigmaFinite μ] [SigmaFinite ν] [NeZero μ] [NeZero ν] [NullSingletonClass μ] [NullSingletonClass ν] :
@@ -80,7 +80,7 @@ theorem exists_spatial_unitary_completions {Y : Type*} [MeasurableSpace Y]
       (completionL2Equiv_modEq μ (B.symm f) (B.symm g)).symm
   exact (completionL2Equiv_modEq ν _ _).trans ((hA _ _).trans hB)
 
-/-- Remark 4.16, including the completed measure space. -/
+/-- Theorem C on the completion of a standard Borel measure space. -/
 theorem phase_retrieval_on_completion [StandardBorelSpace X]
     [SigmaFinite μ] [NeZero μ] [NullSingletonClass μ] :
     ProjectionWorks (@ModEq (NullMeasurableSpace X μ) _ μ.completion) := by

@@ -126,7 +126,7 @@ theorem finite_net_failure_at_dyadic_scale (n : ℕ) (hn : 15 ≤ n) :
       rw [zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0)]
     _ = _ := by rw [hcast]; push_cast; congr 1; ring
 
-/-- The failure probability and stability constant in Proposition 4.4, for
+/-- The failure probability and stability constant of the finite-dimensional estimate, for
 normalized orthogonal pairs. -/
 theorem haarFive_normalized_failure_dyadic (hn : 50 ≤ Fintype.card ι) :
     (haarFiveProbability ι : Measure (Fin 5 → HaarUnitary (EuclideanSpace ℂ ι)))

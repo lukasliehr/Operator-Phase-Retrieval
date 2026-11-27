@@ -4,7 +4,7 @@ import Mathlib.MeasureTheory.Measure.Prokhorov
 /-!
 # Tightness and weak limits of joint coordinate laws
 
-The joint laws in Section 4.5 live on `ℂ^ℕ` with its product topology.
+The joint laws of the limit construction live on `ℂ^ℕ` with its product topology.
 Uniform second moments of each coordinate imply tightness of these laws.
 The probability measures are inputs here; constructing the finite Haar models
 and the unitary operators on the limiting space are separate obligations.
@@ -135,7 +135,7 @@ theorem jointLaw_limit_integral_le
     _ = M := liminf_const M
 
 /-- In particular, every coordinate second- or fourth-moment bound used in
-the paper is preserved by the limiting law. -/
+the proof is preserved by the limiting law. -/
 theorem jointLaw_limit_coordinate_moment_le
     {P : ℕ → ProbabilityMeasure (ℕ → ℂ)} {Q : ProbabilityMeasure (ℕ → ℂ)}
     (hlim : Tendsto P atTop (𝓝 Q)) (r p : ℕ) (M : ℝ≥0)

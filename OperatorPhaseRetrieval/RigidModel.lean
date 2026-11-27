@@ -64,7 +64,7 @@ theorem polynomialL2_dense_of_uniform {K : Set ℂ} (hc : IsCompact K)
   intro f _
   exact closure_minimal hi (LinearMap.range T).isClosed_topologicalClosure (hd f)
 
-/-- A measure with dense polynomials, as in Lemma 3.3. -/
+/-- A measure on the plane in whose `L²` space the polynomials are dense. -/
 theorem exists_polynomial_dense_measure :
     ∃ μ : Measure ℂ, IsFiniteMeasure μ ∧ μ ≠ 0 ∧ μ ≪ volume ∧
       ∃ hm : ∀ p : Polynomial ℂ, MemLp (fun z => p.eval z) 2 μ,
@@ -81,7 +81,7 @@ theorem exists_polynomial_dense_measure :
   · exact fun h => hv.ne' (Measure.restrict_eq_zero.mp h)
   · exact polynomialL2_dense_of_uniform hc (planarProduct_polynomialClosure hFc hne hFq)
 
-/-- Proposition 3.4, including existence of the measure and all approximation data. -/
+/-- The rigid operator, including existence of the measure and all approximation data. -/
 theorem exists_rigid_model :
     ∃ μ : Measure ℂ, IsFiniteMeasure μ ∧ μ ≠ 0 ∧ μ ≪ volume ∧
       ∃ C : L2 μ →L[ℂ] L2 μ, C.IsPositive ∧ ‖C‖ ≤ (1:ℝ)/8 ∧

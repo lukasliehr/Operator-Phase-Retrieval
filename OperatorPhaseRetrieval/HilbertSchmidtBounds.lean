@@ -43,7 +43,7 @@ theorem opNorm_le_basisHilbertSchmidtNorm (b : OrthonormalBasis ι ℂ H)
       simpa only [norm_smul] using norm_sum_le Finset.univ (fun i => b.repr x i • A (b i))
     _ ≤ _ := by simpa only [mul_comm] using hs
 
-/-- Product Hilbert--Schmidt metric for the six matrices in Section 4.3. -/
+/-- Product Hilbert--Schmidt metric for the six matrices of the expressions. -/
 def hilbertSchmidtFamilyDistance (b : OrthonormalBasis ι ℂ H)
     (U V : Fin 6 → H ≃ₗᵢ[ℂ] H) : ℝ :=
   ‖WithLp.toLp 2 (fun j => WithLp.toLp 2 (fun i => U j (b i) - V j (b i)))‖
@@ -64,7 +64,7 @@ theorem unitaryFamilyDistance_le_hilbertSchmidt (b : OrthonormalBasis ι ℂ H)
 
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X} [IsProbabilityMeasure μ]
 
-/-- Lemma 4.6 with the product Hilbert--Schmidt distance and the paper's
+/-- Norm and Lipschitz bounds for expressions in the product Hilbert--Schmidt distance, with
 recursive constants. The ambient L² norm may be normalized counting measure. -/
 theorem expression_hilbertSchmidt_bounds (t : StabilityExpression)
     (b : OrthonormalBasis ι ℂ (L2 μ)) (U V : Fin 6 → L2 μ ≃ₗᵢ[ℂ] L2 μ) :
@@ -74,7 +74,7 @@ theorem expression_hilbertSchmidt_bounds (t : StabilityExpression)
   exact mul_le_mul_of_nonneg_left (unitaryFamilyDistance_le_hilbertSchmidt b U V)
     (NNReal.coe_nonneg _)
 
-/-- Positive constants in Lemma 4.6, chosen before the probability space and its
+/-- Positive constants in the bounds for expressions, chosen before the probability space and its
 dimension. The estimate is thus uniform over all normalized finite models. -/
 theorem expression_positive_hilbertSchmidt_bounds (t : StabilityExpression) :
     ∃ R L : ℝ, 0 < R ∧ 0 < L ∧

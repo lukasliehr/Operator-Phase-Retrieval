@@ -3,7 +3,7 @@ import OperatorPhaseRetrieval.BlockRotation
 
 /-! # Two unitary measurements on a two-dimensional space
 
-The finite-dimensional obstruction used in Remark 3.6 is proved constructively.
+The finite-dimensional obstruction behind the sharpness of Theorem C is proved constructively.
 No spectral decomposition or dimension-counting axiom is required.
 -/
 
@@ -80,7 +80,7 @@ theorem identity_and_unitary_not_phase_retrieval
     pair_one_phase_not_related hω⟩
   nlinarith [norm_nonneg (T x).snd, norm_nonneg (T y).snd]
 
-/-- The two-unitary obstruction used in Remark 3.6, for arbitrary unitaries on ℂ². -/
+/-- The obstruction behind the sharpness of Theorem C, for two arbitrary unitaries on ℂ². -/
 theorem two_unitaries_not_phase_retrieval
     (B₁ B₂ : SumL2 ℂ ≃ₗᵢ[ℂ] SumL2 ℂ) :
     ∃ x y : SumL2 ℂ, CoordinateModEq (B₁ x) (B₁ y) ∧

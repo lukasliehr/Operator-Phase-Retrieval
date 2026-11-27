@@ -3,7 +3,7 @@ import OperatorPhaseRetrieval.ExpressionBounds
 /-!
 # Density from constants, conjugation, and modulus
 
-Analytic ingredients for the coordinate-density argument in Lemma 4.12.
+Analytic ingredients for the coordinate-density argument of the limit construction.
 -/
 
 noncomputable section

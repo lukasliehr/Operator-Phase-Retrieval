@@ -3,7 +3,7 @@ import OperatorPhaseRetrieval.MathlibImports
 noncomputable section
 
 /-!
-# Three-phase separation (Lemma 3.1)
+# Three-phase separation
 
 The proof uses a direct degree-two root calculation, with no polynomial
 approximation or phase-retrieval assumptions.
@@ -95,7 +95,7 @@ theorem pair_from_invariants (r s u v : ℝ)
   · left; constructor <;> nlinarith [h.1, h.2]
   · right; constructor <;> nlinarith [h.1, h.2]
 
-/-- Lemma 3.1, including the unordered-pair and mixed-product conclusions. -/
+/-- Three-phase polarization, including the unordered-pair and mixed-product conclusions. -/
 theorem three_phase (a b c d : ℂ) (η : Fin 3 → ℂ)
     (hη : ∀ j, IsPhase (η j)) (hinj : Function.Injective η)
     (h : ∀ j, ‖a + η j*b‖ = ‖c + η j*d‖) :

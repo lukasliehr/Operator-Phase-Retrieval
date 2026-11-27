@@ -26,8 +26,7 @@ theorem polynomial_eval_le_bound (p : Polynomial ℂ) {R : ℝ} {z : ℂ}
     p.differentiable.continuous.continuousOn)
   simpa using hz
 
-/-- A slightly faster decay than the paper's choice makes the elementary
-sum-of-operator-norms bound at most 1/8. -/
+/-- Weights whose decay makes the elementary sum-of-operator-norms bound at most 1/8. -/
 def smoothingWeight (p : ℕ → Polynomial ℂ) (n : ℕ) : ℝ :=
   ((1/2 : ℝ)^n / 16) / (1 + polynomialBound (p n) ((n : ℝ) + 2))
 

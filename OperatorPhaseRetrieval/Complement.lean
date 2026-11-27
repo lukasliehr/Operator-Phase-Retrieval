@@ -2,7 +2,7 @@ import OperatorPhaseRetrieval.AmplificationTheorem
 
 noncomputable section
 
-/-! Functional-calculus construction of the complement in Proposition 3.5. -/
+/-! Functional-calculus construction of the complement in the amplification proposition. -/
 
 open Filter MeasureTheory
 open scoped InnerProductSpace CStarAlgebra
@@ -47,7 +47,7 @@ theorem exists_complement {H : Type*} [NormedAddCommGroup H]
 
 open MeasureTheory
 
-/-- Proposition 3.5. Positivity is unnecessary once C is self-adjoint and small. -/
+/-- The amplification proposition. Positivity is unnecessary once C is self-adjoint and small. -/
 theorem amplification {X : Type*} [MeasurableSpace X] {μ : Measure X} [NeZero μ]
     (C : L2 μ →L[ℂ] L2 μ) (hC : IsSelfAdjoint C)
     (hsmall : ‖C‖^2 < (1:ℝ)/2) (hrigid : ModulusRigid C) :

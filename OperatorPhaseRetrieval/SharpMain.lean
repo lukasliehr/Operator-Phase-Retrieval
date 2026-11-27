@@ -1,9 +1,9 @@
 import OperatorPhaseRetrieval.Sharpness
 import OperatorPhaseRetrieval.TransferredInstability
 
-/-! # Theorem 1.1 with sharpness and instability for the same projection
+/-! # Theorem C with sharpness and instability for the same projection
 
-This strengthens the main theorem by including both Remarks 3.6 and 3.7.
+This strengthens Theorem C on `L²(ℝ)` by a sharpness and an instability statement.
 -/
 
 noncomputable section
@@ -12,7 +12,7 @@ open MeasureTheory
 
 namespace OperatorPhaseRetrieval
 
-/-- Theorem 1.1 and Remarks 3.6--3.7, all for a single projection. -/
+/-- Theorem C with sharpness and instability, all for a single projection. -/
 theorem main_with_sharpness_and_full_instability :
     ∃ P : RealL2 →L[ℂ] RealL2, IsOrthogonalProjection P ∧
       (∀ η : Fin 3 → ℂ, (∀ j, IsPhase (η j)) → Function.Injective η →
@@ -85,7 +85,7 @@ theorem main_with_sharpness_and_full_instability :
   · exact transported_no_uniform_recovery W hW D b hw hD hc hsq
       (fun η : {η : ℂ // IsPhase η} => η.1) (fun η => η.2)
 
-/-- Theorem 1.1 and Remark 3.7 for one and the same projection. -/
+/-- Theorem C and instability for one and the same projection. -/
 theorem main_with_instability :
     ∃ P : RealL2 →L[ℂ] RealL2, IsOrthogonalProjection P ∧
       ∀ η : Fin 3 → ℂ, (∀ j, IsPhase (η j)) → Function.Injective η →

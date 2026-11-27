@@ -38,7 +38,7 @@ theorem finiteL2_coordinate_norm_le (f : L2 (finiteProbability ι)) (i : ι) :
     abs_of_nonneg (Real.sqrt_nonneg _), LinearIsometryEquiv.norm_map]
   exact mul_le_mul_of_nonneg_left (PiLp.norm_apply_le z i) (Real.sqrt_nonneg _)
 
-/-- The exact dimension factor in the coordinate Lipschitz bound of Lemma 4.8. -/
+/-- The exact dimension factor in the coordinate Lipschitz bound for the fourth moments. -/
 theorem finiteExpression_coordinate_lipschitz (t : StabilityExpression) (i : ι)
     (U V : Fin 6 → HaarUnitary (EuclideanSpace ℂ ι)) :
     |‖t.eval (finiteHaarModel ι U) i‖ - ‖t.eval (finiteHaarModel ι V) i‖| ≤

@@ -21,7 +21,7 @@ namespace OperatorPhaseRetrieval
 def haarExpressionPoincareBound (t : StabilityExpression) : ℝ≥0 :=
   8 * t.radius ^ 4 + 2304 * t.lipBound ^ 4
 
-/-- Lemma 4.8 for the actual Haar expression models, without a concentration hypothesis. -/
+/-- The fourth-moment bound for the Haar expression models, without a concentration hypothesis. -/
 theorem haarExpressionMomentBounds : HaarExpressionMomentBounds haarExpressionPoincareBound := by
   intro n t
   let ι := Fin (n+1)
@@ -53,7 +53,7 @@ theorem haarExpressionMomentBounds : HaarExpressionMomentBounds haarExpressionPo
       rw [← ENNReal.ofReal_coe_nnreal]
       congr 1
 
-/-- Lemma 4.10 with all Haar-model hypotheses discharged. -/
+/-- The selection of finite models, with all Haar-model hypotheses discharged. -/
 theorem exists_finiteHaar_models :
     ∃ n : ℕ → ℕ, StrictMono n ∧
       ∃ U : ∀ k, Fin 6 → HaarUnitary (EuclideanSpace ℂ (Fin (n k + 1))),
@@ -65,13 +65,13 @@ theorem exists_finiteHaar_models :
         Tendsto (fun k => finiteHaarLaw (Fin (n k + 1)) (U k)) atTop (𝓝 circularGaussian) :=
   exists_finiteHaar_models_of_moment_bounds haarExpressionPoincareBound haarExpressionMomentBounds
 
-/-- Theorem 1.3: five surjective complex unitaries on `L²(ℝ)`, the first identity,
+/-- Theorem B on `L²(ℝ)`: five surjective complex unitaries, the first identity,
 with lower stability constant `2⁻¹⁰⁰` and upper constant `1`. -/
 theorem fiveUnitaryStability_real : FiveUnitaryStability (volume : Measure ℝ) :=
   fiveUnitaryStability_real_of_haar_moment_bounds haarExpressionPoincareBound
     haarExpressionMomentBounds
 
-/-- Remark 4.16 for the five-unitary stability theorem on atomless standard spaces. -/
+/-- Theorem B on atomless standard Borel spaces. -/
 theorem fiveUnitaryStability_standardBorel {X : Type*} [MeasurableSpace X]
     [StandardBorelSpace X] (μ : Measure X) [SigmaFinite μ] [NeZero μ] [NullSingletonClass μ] :
     FiveUnitaryStability μ :=

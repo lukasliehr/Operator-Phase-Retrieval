@@ -1,6 +1,6 @@
 import OperatorPhaseRetrieval.PhaseDistance
 
-/-! # Orthogonal-pair reduction (Lemma 4.1)
+/-! # Orthogonal-pair reduction
 
 The pointwise contraction underlying the reduction works for arbitrary complex
 numbers and therefore for every linear measurement at every point.
@@ -12,7 +12,7 @@ open scoped InnerProductSpace
 
 namespace OperatorPhaseRetrieval
 
-/-- The scalar mixing used in Lemma 4.1. -/
+/-- The scalar mixing used in the orthogonal reduction. -/
 def mixScalar (t : ℝ) (z w : ℂ) : ℂ := (1 - (t : ℂ)) * z - (t : ℂ) * w
 
 theorem mixScalar_norm_sq_sub (t : ℝ) (z w : ℂ) :
@@ -106,7 +106,7 @@ theorem exists_orthogonal_mix (f g : H) {q : ℝ} (hq : 0 ≤ q)
   change (F t : ℂ) = 0
   rw [he, Complex.ofReal_zero]
 
-/-- Lemma 4.1, in a form valid even when the phase distance is zero.
+/-- The orthogonal reduction, in a form valid even when the phase distance is zero.
 The scalar-functional conclusion yields the pointwise assertion for every
 linear map into a space of functions. -/
 theorem orthogonal_reduction (f g : H) :
@@ -144,7 +144,7 @@ theorem mixVector_map_coeFn {X : Type*} [MeasurableSpace X] {μ : Measure X}
   rw [hs, hf, hg]
   rfl
 
-/-- Lemma 4.1 for arbitrary linear L² measurements, including the a.e. bookkeeping. -/
+/-- The orthogonal reduction for arbitrary linear L² measurements, with the a.e. bookkeeping. -/
 theorem orthogonal_reduction_L2 {X : Type*} [MeasurableSpace X] {μ : Measure X} (f g : H) :
     ∃ u v : H, u ∈ Submodule.span ℂ ({f, g} : Set H) ∧
       v ∈ Submodule.span ℂ ({f, g} : Set H) ∧

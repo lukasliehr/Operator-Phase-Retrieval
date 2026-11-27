@@ -5,7 +5,7 @@ import OperatorPhaseRetrieval.TorusNet
 /-!
 # Haar small-ball probabilities
 
-Lemma 4.3 is proved for canonical Haar probability on the unitary group.
+The small-ball estimate is proved for canonical Haar probability on the unitary group.
 Averaging over the subgroup fixing the first vector reduces the estimate to
 `TorusNet` on the orthogonal-complement sphere. Right invariance and Tonelli
 justify the averaging, so no conditional-distribution hypothesis is needed.
@@ -149,7 +149,7 @@ theorem coordinateModulus_smul (c : ℂ) (z : EuclideanSpace ℂ ι) :
   change ‖c * z i‖ = ‖c‖ * ‖z i‖
   exact norm_mul c (z i)
 
-/-- Lemma 4.3: the exact Haar small-ball estimate for any normalized orthogonal
+/-- The exact Haar small-ball estimate for any normalized orthogonal
 pair, with no additional distributional or geometric hypotheses. -/
 theorem haarUnitary_smallBall (hn : 3 ≤ Fintype.card ι)
     (u v : EuclideanSpace ℂ ι) (huv : inner ℂ u v = 0)

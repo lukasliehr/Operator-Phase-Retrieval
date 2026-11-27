@@ -16,7 +16,7 @@ theorem complex_four_phase_fourth (a b : ℂ) :
     Complex.mul_re, Complex.mul_im, Complex.I_re, Complex.I_im]
   ring
 
-/-- The Poincaré mixed-moment bound implies the fourth-moment bound of Lemma 4.8. -/
+/-- The Poincaré mixed-moment bound implies the fourth-moment bound `8R⁴ + 2304L⁴`. -/
 theorem fourth_moment_constant_of_poincare (R L : ℝ) :
     R ^ 4 + 240 * R ^ 2 * L ^ 2 ≤ 8 * R ^ 4 + 2304 * L ^ 4 := by
   nlinarith [sq_nonneg ((5/2 : ℝ) * R ^ 2 - 48 * L ^ 2), sq_nonneg (R ^ 2)]
