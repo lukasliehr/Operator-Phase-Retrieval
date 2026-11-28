@@ -32,6 +32,48 @@ sources:
 automation:
   methods:
     - method: "agent"
+      models: ["GPT-5.6 Sol"]
+      framework: "Codex"
+      tool_setup: >-
+        September and October 2026. The agent wrote the Lean proofs of
+        Theorems B and C. This is the library OperatorPhaseRetrieval without
+        the modules named in the next two entries.
+    - method: "agent"
+      models: ["GPT-6.2 Astra"]
+      framework: "Codex"
+      tool_setup: >-
+        November 2026. The agent wrote the Lean proof of Theorem A on the
+        circle and on L²(ℝ), which is contained in the seven modules
+        OperatorPhaseRetrieval/TwoUnitary*.lean.
+    - method: "agent"
+      models: ["Claude Fable 5.2"]
+      framework: "Claude Code"
+      tool_setup: >-
+        November 2026. Following the instructions of the authors, the agent
+        wrote the definitions and statements of Challenge.lean in the terms of
+        the paper. It wrote the modules Formulations.lean and MainTheorems.lean,
+        which derive these statements from the library and extend Theorem A
+        from L²(ℝ) to every non-atomic measure space with separable L². It
+        ported all files to the module system and from Lean v4.33.0 to
+        Lean v4.35.0, which needed small repairs of proofs and did not affect
+        the statements of Challenge.lean. It prepared Solution.lean,
+        comparator.json and a draft of this file.
+  notes: >-
+    The Lean code was written by the AI agents listed above, which worked as
+    coding agents under the direction of the authors. The authors decided
+    which statements are formalized and checked the statements of
+    Challenge.lean, see review.notes.
 
 review:
   status: "author-verified"
+  notes: >-
+    The authors, who are also the authors of the paper, compared the
+    definitions and the theorem statements of Challenge.lean with the paper,
+    namely with Definitions 1 and 2 and with Theorems 1 and 2, which are
+    Theorems A and B. Theorem C is not part of the paper, and the authors
+    checked its statement directly. They did not read the Lean proofs line by
+    line. The correctness of the proofs rests on the Lean kernel: the project
+    contains no sorry outside Challenge.lean, and Comparator accepts
+    Solution.lean against Challenge.lean with the axioms propext,
+    Classical.choice and Quot.sound only. No review by anyone outside the
+    author team took place.
