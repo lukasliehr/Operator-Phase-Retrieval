@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HaarConjugation
+module
+
+public import OperatorPhaseRetrieval.HaarConjugation
+
+@[expose] public section
 
 noncomputable section
 

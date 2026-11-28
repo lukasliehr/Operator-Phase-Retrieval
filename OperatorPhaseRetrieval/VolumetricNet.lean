@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.MathlibImports
-import Mathlib.MeasureTheory.Covering.BesicovitchVectorSpace
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import Mathlib.MeasureTheory.Covering.BesicovitchVectorSpace
+
+@[expose] public section
 
 noncomputable section
 

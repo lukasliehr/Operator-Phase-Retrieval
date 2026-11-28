@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HaarSmallBall
+module
+
+public import OperatorPhaseRetrieval.HaarSmallBall
+
+@[expose] public section
 
 noncomputable section
 

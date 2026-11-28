@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.GaussianMoments
-import Mathlib.Probability.StrongLaw
+module
+
+public import OperatorPhaseRetrieval.GaussianMoments
+public import Mathlib.Probability.StrongLaw
+
+@[expose] public section
 
 noncomputable section
 

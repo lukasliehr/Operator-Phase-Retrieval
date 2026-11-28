@@ -1,7 +1,14 @@
-import OperatorPhaseRetrieval.UnitaryLogarithm
-import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+module
+
+public import OperatorPhaseRetrieval.UnitaryLogarithm
+public import Mathlib.Analysis.Normed.Algebra.MatrixExponential
+
+@[expose] public section
 
 noncomputable section
+
+-- With all of Mathlib imported, some instance searches in this file need a larger budget.
+set_option synthInstance.maxHeartbeats 200000
 
 open NormedSpace
 open scoped Matrix Matrix.Norms.L2Operator

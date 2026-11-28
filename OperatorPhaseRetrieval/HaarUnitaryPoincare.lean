@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.AveragedPathEnergy
-import OperatorPhaseRetrieval.BoundedHaarDirections
-import OperatorPhaseRetrieval.HermitianUnitaryPaths
+module
+
+public import OperatorPhaseRetrieval.AveragedPathEnergy
+public import OperatorPhaseRetrieval.BoundedHaarDirections
+public import OperatorPhaseRetrieval.HermitianUnitaryPaths
+
+@[expose] public section
 
 noncomputable section
 

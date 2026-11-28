@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.TransformedExpressions
+module
+
+public import OperatorPhaseRetrieval.TransformedExpressions
+
+@[expose] public section
 
 noncomputable section
 

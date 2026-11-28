@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.OrthogonalReduction
-import OperatorPhaseRetrieval.Stability
+module
+
+public import OperatorPhaseRetrieval.OrthogonalReduction
+public import OperatorPhaseRetrieval.Stability
+
+@[expose] public section
 
 /-! # From normalized orthogonal pairs to the full stability estimate -/
 

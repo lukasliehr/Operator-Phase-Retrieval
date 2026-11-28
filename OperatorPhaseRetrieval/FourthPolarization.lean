@@ -1,4 +1,9 @@
-import Mathlib.Analysis.Complex.Basic
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import Mathlib.Analysis.Complex.Basic
+
+@[expose] public section
 
 noncomputable section
 

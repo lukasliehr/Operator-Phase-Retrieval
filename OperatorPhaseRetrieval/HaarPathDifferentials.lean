@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.BoundedPathDifferential
-import OperatorPhaseRetrieval.HermitianOperatorBound
-import OperatorPhaseRetrieval.HaarProductPoincare
+module
+
+public import OperatorPhaseRetrieval.BoundedPathDifferential
+public import OperatorPhaseRetrieval.HermitianOperatorBound
+public import OperatorPhaseRetrieval.HaarProductPoincare
+
+@[expose] public section
 
 noncomputable section
 
@@ -56,7 +60,7 @@ theorem haarSix_inverse_coordinate_hasBoundedPathDifferential (j : Fin 6) :
         (((U j)⁻¹ : HaarUnitary (EuclideanSpace ℂ ι)) : EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι)) 1 := by
   have h := (haarSix_coordinate_hasBoundedPathDifferential ι j).smooth_comp star
     (starL ℝ : (EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι) ≃L[ℝ]
-      (EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι)).contDiff 1 star_isometry.lipschitz
+      (EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι)).contDiff 1 star_isometry.lipschitzWith
   simpa only [NNReal.coe_one, one_mul, ← Unitary.star_eq_inv, Unitary.coe_star] using h
 
 variable [Nonempty ι] [MeasurableSpace ι] [MeasurableSingletonClass ι]

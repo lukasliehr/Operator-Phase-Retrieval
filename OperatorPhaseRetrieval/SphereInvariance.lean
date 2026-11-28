@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.SphereCaps
+module
+
+public import OperatorPhaseRetrieval.SphereCaps
+
+@[expose] public section
 
 /-!
 # Invariance of canonical sphere measure

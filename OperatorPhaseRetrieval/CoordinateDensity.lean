@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.L2Density
-import OperatorPhaseRetrieval.LimitCoordinates
+module
+
+public import OperatorPhaseRetrieval.L2Density
+public import OperatorPhaseRetrieval.LimitCoordinates
+
+@[expose] public section
 
 /-!
 # Density of the coordinate family
@@ -60,7 +64,7 @@ theorem denseRange_of_coordinate_algebra {ι : Type*} [Nonempty ι]
   have hH : IsClosed (H : Set (L2 ν)) := isClosed_closure
   have hconj : ∀ g ∈ H, conjugateL2 g ∈ H := by
     intro g hg
-    exact map_mem_closure (Complex.isometry_conj.lipschitz.continuous_compLp (map_zero _))
+    exact map_mem_closure (Complex.isometry_conj.lipschitzWith.continuous_compLp (map_zero _))
       hg (by rintro _ ⟨i, rfl⟩; exact hc i)
   have hmod : ∀ g ∈ H, complexModulusL2 g ∈ H := by
     intro g hg

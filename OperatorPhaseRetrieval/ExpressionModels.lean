@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.CoordinateDensity
+module
+
+public import OperatorPhaseRetrieval.CoordinateDensity
+
+@[expose] public section
 
 /-! Joint coordinate laws obtained by evaluating the actual countable syntax. -/
 
@@ -39,11 +43,11 @@ variable {X : Type*} [MeasurableSpace X] (μ : Measure X) [IsProbabilityMeasure 
 def coordinateMap (x : X) (r : ℕ) : ℂ := eval U (ofIndex r) x
 
 theorem coordinateMap_measurable : Measurable (coordinateMap μ U) :=
-  measurable_pi_lambda _ (fun r => (Lp.stronglyMeasurable (eval U (ofIndex r))).measurable)
+  measurable_pi_iff.mpr (fun r => (Lp.stronglyMeasurable (eval U (ofIndex r))).measurable)
 
 /-- The actual joint law of the evaluated formal expressions. -/
 def jointLaw : ProbabilityMeasure (ℕ → ℂ) :=
-  ⟨μ.map (coordinateMap μ U), Measure.isProbabilityMeasure_map (coordinateMap_measurable μ U).aemeasurable⟩
+  ⟨μ.map (coordinateMap μ U), inferInstance⟩
 
 theorem jointLaw_memLp (r : ℕ) :
     MemLp (fun z : ℕ → ℂ => z r) 2 (jointLaw μ U : Measure (ℕ → ℂ)) := by

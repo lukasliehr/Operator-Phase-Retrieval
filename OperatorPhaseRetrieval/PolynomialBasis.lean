@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.PolynomialSmoothing
+module
+
+public import OperatorPhaseRetrieval.PolynomialSmoothing
+
+@[expose] public section
 
 noncomputable section
 

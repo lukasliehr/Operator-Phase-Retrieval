@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.Completion
+module
+
+public import OperatorPhaseRetrieval.Completion
+
+@[expose] public section
 
 noncomputable section
 

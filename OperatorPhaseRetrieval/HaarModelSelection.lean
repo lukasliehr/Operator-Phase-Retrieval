@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HaarEmpiricalLaw
-import OperatorPhaseRetrieval.ExpressionLimit
+module
+
+public import OperatorPhaseRetrieval.HaarEmpiricalLaw
+public import OperatorPhaseRetrieval.ExpressionLimit
+
+@[expose] public section
 
 /-!
 # Selection of the actual finite Haar models
@@ -76,7 +80,7 @@ theorem finiteHaarLaw_jointLaw_seed (n : ℕ)
     (U : Fin 6 → HaarUnitary (EuclideanSpace ℂ (Fin (n+1)))) :
     (StabilityExpression.jointLaw (finiteProbability (Fin (n+1)))
       (finiteHaarModel (Fin (n+1)) U)).map
-      (measurable_pi_apply StabilityExpression.seed.index).aemeasurable =
+      (fun z => z StabilityExpression.seed.index) =
       finiteHaarLaw (Fin (n+1)) U := by
   apply Subtype.ext
   change ((finiteProbability (Fin (n+1))).map

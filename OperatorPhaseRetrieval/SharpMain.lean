@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.Sharpness
-import OperatorPhaseRetrieval.TransferredInstability
+module
+
+public import OperatorPhaseRetrieval.Sharpness
+public import OperatorPhaseRetrieval.TransferredInstability
+
+@[expose] public section
 
 /-! # Theorem C with sharpness and instability for the same projection
 

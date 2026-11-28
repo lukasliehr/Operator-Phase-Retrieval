@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.MathlibImports
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+
+@[expose] public section
 
 noncomputable section
 
@@ -53,7 +57,7 @@ theorem measurable_extendedQuantile : Measurable (extendedQuantile μ) := by
 
 theorem cdf_extendedQuantile {t : ℝ} (ht : t ∈ Ioo (0:ℝ) 1) :
     cdf μ (extendedQuantile μ t) = t := by
-  rw [extendedQuantile, dif_pos ht, cdfQuantile_spec]
+  rw [extendedQuantile, dite_eq_left ht, cdfQuantile_spec]
 
 def uniformUnit : Measure ℝ := volume.restrict (Ioo (0:ℝ) 1)
 

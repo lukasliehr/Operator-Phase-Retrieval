@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.ExpressionPathDifferentials
-import OperatorPhaseRetrieval.ExpressionApproximation
-import OperatorPhaseRetrieval.HaarSmoothFourthMoments
+module
+
+public import OperatorPhaseRetrieval.ExpressionPathDifferentials
+public import OperatorPhaseRetrieval.ExpressionApproximation
+public import OperatorPhaseRetrieval.HaarSmoothFourthMoments
+
+@[expose] public section
 
 noncomputable section
 

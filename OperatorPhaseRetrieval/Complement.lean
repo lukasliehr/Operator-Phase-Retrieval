@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.AmplificationTheorem
+module
+
+public import OperatorPhaseRetrieval.AmplificationTheorem
+
+@[expose] public section
 
 noncomputable section
 

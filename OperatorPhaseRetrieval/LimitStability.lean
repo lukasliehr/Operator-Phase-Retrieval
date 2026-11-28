@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.CoordinateDensity
-import OperatorPhaseRetrieval.UnitaryExtension
+module
+
+public import OperatorPhaseRetrieval.CoordinateDensity
+public import OperatorPhaseRetrieval.UnitaryExtension
+
+@[expose] public section
 
 /-!
 # Constructing the limiting stable unitaries from coordinate models

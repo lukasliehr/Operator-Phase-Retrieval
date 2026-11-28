@@ -1,7 +1,11 @@
-import OperatorPhaseRetrieval.TwoUnitaryFourier
-import OperatorPhaseRetrieval.SpatialExistence
-import OperatorPhaseRetrieval.SpatialTransfer
-import OperatorPhaseRetrieval.Formulations
+module
+
+public import OperatorPhaseRetrieval.TwoUnitaryFourier
+public import OperatorPhaseRetrieval.SpatialExistence
+public import OperatorPhaseRetrieval.SpatialTransfer
+public import OperatorPhaseRetrieval.Formulations
+
+@[expose] public section
 
 /-! Transfer of the two measurements from normalized circle measure to the real line. -/
 noncomputable section
@@ -9,7 +13,7 @@ noncomputable section
 open MeasureTheory
 namespace OperatorPhaseRetrieval.TwoUnitary
 
-private theorem nullSingleton_haar : NullSingletonClass μ := by
+theorem nullSingleton_haar : NullSingletonClass μ := by
   constructor
   intro x
   have hh : (volume : Measure UnitAddCircle) = μ := by

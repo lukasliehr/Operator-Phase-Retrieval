@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.HaarSphere
-import OperatorPhaseRetrieval.ComplementUnitary
-import OperatorPhaseRetrieval.TorusNet
+module
+
+public import OperatorPhaseRetrieval.HaarSphere
+public import OperatorPhaseRetrieval.ComplementUnitary
+public import OperatorPhaseRetrieval.TorusNet
+
+@[expose] public section
 
 /-!
 # Haar small-ball probabilities

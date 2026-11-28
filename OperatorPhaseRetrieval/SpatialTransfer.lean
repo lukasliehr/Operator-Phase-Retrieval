@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.Complement
-import OperatorPhaseRetrieval.PolynomialBasis
+module
+
+public import OperatorPhaseRetrieval.Complement
+public import OperatorPhaseRetrieval.PolynomialBasis
+
+@[expose] public section
 
 noncomputable section
 

@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.StabilityLimits
+module
+
+public import OperatorPhaseRetrieval.StabilityLimits
+
+@[expose] public section
 
 /-!
 # Unitary extension from a dense family with preserved Gram matrix

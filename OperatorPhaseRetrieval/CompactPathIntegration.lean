@@ -1,5 +1,10 @@
-import OperatorPhaseRetrieval.HaarIncrementVariance
-import OperatorPhaseRetrieval.PathEnergy
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import OperatorPhaseRetrieval.HaarIncrementVariance
+public import OperatorPhaseRetrieval.PathEnergy
+
+@[expose] public section
 
 noncomputable section
 

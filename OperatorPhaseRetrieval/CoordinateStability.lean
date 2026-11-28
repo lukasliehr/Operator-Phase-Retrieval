@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.PairModulus
-import OperatorPhaseRetrieval.OrthogonalReduction
+module
+
+public import OperatorPhaseRetrieval.PairModulus
+public import OperatorPhaseRetrieval.OrthogonalReduction
+
+@[expose] public section
 
 noncomputable section
 

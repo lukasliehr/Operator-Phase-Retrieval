@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.QuadraticLimits
-import OperatorPhaseRetrieval.StabilityLimits
+module
+
+public import OperatorPhaseRetrieval.QuadraticLimits
+public import OperatorPhaseRetrieval.StabilityLimits
+
+@[expose] public section
 
 /-! # Actual `L²` coordinates and convergence of their phase and magnitude distances -/
 

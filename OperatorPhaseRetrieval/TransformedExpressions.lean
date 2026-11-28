@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.SmoothModulus
+module
+
+public import OperatorPhaseRetrieval.SmoothModulus
+
+@[expose] public section
 
 noncomputable section
 

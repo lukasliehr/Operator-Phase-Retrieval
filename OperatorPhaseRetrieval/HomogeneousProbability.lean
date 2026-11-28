@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.MathlibImports
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+
+@[expose] public section
 
 noncomputable section
 

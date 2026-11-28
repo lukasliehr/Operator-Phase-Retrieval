@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HaarConjugation
-import OperatorPhaseRetrieval.FourthPolarization
+module
+
+public import OperatorPhaseRetrieval.HaarConjugation
+public import OperatorPhaseRetrieval.FourthPolarization
+
+@[expose] public section
 
 noncomputable section
 
@@ -14,7 +18,7 @@ instance haarUnitaryProbability_isInvInvariant
   constructor
   let : IsProbabilityMeasure (haarUnitaryProbability E : Measure (HaarUnitary E)).inv := by
     change IsProbabilityMeasure (Measure.map Inv.inv (haarUnitaryProbability E : Measure (HaarUnitary E)))
-    exact Measure.isProbabilityMeasure_map measurable_inv.aemeasurable
+    exact inferInstance
   have : (haarUnitaryProbability E : Measure (HaarUnitary E)).inv.IsHaarMeasure := {}
   exact Measure.isHaarMeasure_eq_of_isProbabilityMeasure _ _
 
@@ -190,7 +194,8 @@ theorem haarEntry_mixedMoment_row_permutation (p : Equiv.Perm ι) (i j k l : ι)
     (haarUnitaryProbability (EuclideanSpace ℂ ι) : Measure (HaarUnitary (EuclideanSpace ℂ ι)))
     (permutationHaarUnitary ι p)
   have hf : Measurable (fun U : HaarUnitary (EuclideanSpace ℂ ι) =>
-      ‖haarEntry ι U i j‖ ^ 2 * ‖haarEntry ι U k l‖ ^ 2) := by fun_prop
+      ‖haarEntry ι U i j‖ ^ 2 * ‖haarEntry ι U k l‖ ^ 2) :=
+    (((haarEntry_continuous ι i j).norm.pow 2).mul ((haarEntry_continuous ι k l).norm.pow 2)).measurable
   have h := integral_map
     (μ := (haarUnitaryProbability (EuclideanSpace ℂ ι) : Measure (HaarUnitary (EuclideanSpace ℂ ι))))
     hm.measurable.aemeasurable hf.aestronglyMeasurable
@@ -244,7 +249,7 @@ theorem haarEntry_fourthMoment (i j : ι) :
       simp
     · have he := haarEntry_fourthMoment_eq_two_mixed ι i j k (Ne.symm hk)
       change A = 2 * (∫ U, ‖haarEntry ι U i j‖ ^ 2 * ‖haarEntry ι U i k‖ ^ 2 ∂μ) at he
-      simp only [hk, if_false, add_zero]
+      simp only [hk, ite_false, add_zero]
       linarith
   have hs : (∑ k, ∫ U, ‖haarEntry ι U i j‖ ^ 2 * ‖haarEntry ι U i k‖ ^ 2 ∂μ) =
       (Fintype.card ι : ℝ)⁻¹ := by
@@ -252,7 +257,7 @@ theorem haarEntry_fourthMoment (i j : ι) :
     simp_rw [← Finset.mul_sum, haarEntry_row_norm_sq, mul_one]
     exact haarEntry_secondMoment ι i j
   simp only [hm, Finset.sum_add_distrib, Finset.sum_const, Finset.card_univ,
-    nsmul_eq_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true] at hs
+    nsmul_eq_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at hs
   have hn : (Fintype.card ι : ℝ) ≠ 0 := by exact_mod_cast Fintype.card_ne_zero
   have hn1 : (Fintype.card ι : ℝ) + 1 ≠ 0 := by positivity
   change A = _
@@ -279,7 +284,8 @@ theorem haarEntry_column_mixedMoment (i k j : ι) (hik : i ≠ k) :
   have hm := Measure.measurePreserving_inv
     (haarUnitaryProbability (EuclideanSpace ℂ ι) : Measure (HaarUnitary (EuclideanSpace ℂ ι)))
   have hf : Measurable (fun U : HaarUnitary (EuclideanSpace ℂ ι) =>
-      ‖haarEntry ι U i j‖ ^ 2 * ‖haarEntry ι U k j‖ ^ 2) := by fun_prop
+      ‖haarEntry ι U i j‖ ^ 2 * ‖haarEntry ι U k j‖ ^ 2) :=
+    (((haarEntry_continuous ι i j).norm.pow 2).mul ((haarEntry_continuous ι k j).norm.pow 2)).measurable
   have h := integral_map
     (μ := (haarUnitaryProbability (EuclideanSpace ℂ ι) : Measure (HaarUnitary (EuclideanSpace ℂ ι))))
     hm.measurable.aemeasurable hf.aestronglyMeasurable
@@ -307,14 +313,14 @@ theorem haarEntry_disjoint_mixedMoment (i j k l : ι) (hik : i ≠ k) (hjl : j �
         simp [Equiv.swap_apply_of_ne_of_ne hik (Ne.symm hr)]
       have hk : (Equiv.swap k r).symm r = k := by simp
       rw [hi, hk] at h
-      simpa only [hr, if_false, add_zero] using h.symm
+      simpa only [hr, ite_false, add_zero] using h.symm
   have hs : (∑ r, ∫ U, ‖haarEntry ι U i j‖ ^ 2 * ‖haarEntry ι U r l‖ ^ 2 ∂μ) =
       (Fintype.card ι : ℝ)⁻¹ := by
     rw [← integral_finsetSum _ (fun r _ => haarEntry_norm_pow_mul_integrable ι i j r l 2 2)]
     simp_rw [← Finset.mul_sum, haarEntry_column_norm_sq, mul_one]
     exact haarEntry_secondMoment ι i j
   simp only [hm, Finset.sum_add_distrib, Finset.sum_const, Finset.card_univ,
-    nsmul_eq_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true] at hs
+    nsmul_eq_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at hs
   have hnNat : 1 < Fintype.card ι := Fintype.one_lt_card_iff.mpr ⟨i, k, hik⟩
   have hn : (1 : ℝ) < Fintype.card ι := by exact_mod_cast hnNat
   have hn0 : (Fintype.card ι : ℝ) ≠ 0 := by positivity

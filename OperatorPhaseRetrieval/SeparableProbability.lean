@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.ProbabilitySpatial
-import OperatorPhaseRetrieval.WeightedL2
+module
+
+public import OperatorPhaseRetrieval.ProbabilitySpatial
+public import OperatorPhaseRetrieval.WeightedL2
+
+@[expose] public section
 
 /-! A standard Borel model for an arbitrary separable atomless probability space. -/
 
@@ -95,11 +99,11 @@ theorem separable_probability_spatial_unitary [IsProbabilityMeasure μ]
       ∀ f g, ModEq (W f) (W g) ↔ ModEq f g := by
   obtain ⟨u, hu⟩ := exists_dense_seq (L2 μ)
   let F : X → (ℕ → ℂ) := fun x n => u n x
-  have hm : Measurable F := measurable_pi_lambda _ (fun n =>
+  have hm : Measurable F := measurable_pi_iff.mpr (fun n =>
     (Lp.stronglyMeasurable (u n)).measurable)
   let ρ := Measure.map F μ
   have hF : MeasurePreserving F μ ρ := ⟨hm, rfl⟩
-  let : IsProbabilityMeasure ρ := Measure.isProbabilityMeasure_map hm.aemeasurable
+  let : IsProbabilityMeasure ρ := inferInstanceAs (IsProbabilityMeasure (Measure.map F μ))
   let T : L2 ρ →ₗᵢ[ℂ] L2 μ := Lp.compMeasurePreservingₗᵢ ℂ F hF
   have hs : Function.Surjective T := by
     apply isometry_surjective_of_dense T u hu

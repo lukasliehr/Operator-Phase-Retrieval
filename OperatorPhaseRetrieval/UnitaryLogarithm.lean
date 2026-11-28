@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HaarUnitary
-import Mathlib.Analysis.CStarAlgebra.Unitary.Connected
+module
+
+public import OperatorPhaseRetrieval.HaarUnitary
+public import Mathlib.Analysis.CStarAlgebra.Unitary.Connected
+
+@[expose] public section
 
 noncomputable section
 
@@ -26,9 +30,10 @@ theorem haarUnitary_exp_arg (u : HaarUnitary E) :
   conv_rhs => rw [← cfc_id' ℂ (u : E →L[ℂ] E)]
   refine cfc_congr fun y hy ↦ ?_
   have hy₁ : ‖y‖ = 1 := spectrum.norm_eq_one_of_unitary u.2 hy
-  have : I * y.arg = log y :=
-    Complex.ext (by simp [log_re, spectrum.norm_eq_one_of_unitary u.2 hy]) (by simp [log_im])
-  simpa [← exp_eq_exp_ℂ, this] using exp_log (by aesop)
+  have : I * y.arg = Complex.log y :=
+    Complex.ext (by simp [Complex.log_re, spectrum.norm_eq_one_of_unitary u.2 hy])
+      (by simp [Complex.log_im])
+  simpa [← exp_eq_exp_ℂ, this] using Complex.exp_log (by aesop)
 
 theorem haarUnitary_exists_bounded_log (u : HaarUnitary E) :
     ∃ A : selfAdjoint (E →L[ℂ] E), selfAdjoint.expUnitary A = u ∧ ‖A‖ ≤ Real.pi :=

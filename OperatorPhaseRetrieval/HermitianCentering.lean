@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HermitianCoordinates
+module
+
+public import OperatorPhaseRetrieval.HermitianCoordinates
+
+@[expose] public section
 
 noncomputable section
 

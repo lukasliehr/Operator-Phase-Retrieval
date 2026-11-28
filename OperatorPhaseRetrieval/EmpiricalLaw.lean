@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.FiniteProbabilityL2
-import Mathlib.Probability.StrongLaw
-import Mathlib.MeasureTheory.Measure.Portmanteau
+module
+
+public import OperatorPhaseRetrieval.FiniteProbabilityL2
+public import Mathlib.Probability.StrongLaw
+public import Mathlib.MeasureTheory.Measure.Portmanteau
+
+@[expose] public section
 
 noncomputable section
 
@@ -13,8 +17,7 @@ variable {E : Type*} [MeasurableSpace E]
 
 /-- Empirical probability law of the first `n+1` samples. -/
 def empiricalLaw (z : ℕ → E) (n : ℕ) : ProbabilityMeasure E :=
-  ⟨(finiteProbability (Fin (n+1))).map (fun i : Fin (n+1) => z i),
-    Measure.isProbabilityMeasure_map (measurable_of_countable _).aemeasurable⟩
+  ⟨(finiteProbability (Fin (n+1))).map (fun i : Fin (n+1) => z i), inferInstance⟩
 
 theorem empiricalLaw_integral (z : ℕ → E) (n : ℕ) (h : E → ℝ) (hm : Measurable h) :
     ∫ x, h x ∂(empiricalLaw z n : Measure E) =

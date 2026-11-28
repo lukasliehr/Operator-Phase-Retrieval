@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.UniformAlgebra
+module
+
+public import OperatorPhaseRetrieval.UniformAlgebra
+
+@[expose] public section
 
 noncomputable section
 
@@ -79,7 +83,7 @@ theorem logistic_uniform_bound (f : C(K,ℂ)) (hf : ∀ z, (f z).re ≠ 0)
       2 * Real.exp (-N*d) := by
   rw [realCut_apply]
   by_cases hz : (f z).re < 0
-  · rw [if_pos hz]
+  · rw [ite_eq_left hz]
     have hb : ‖Complex.exp ((N:ℂ) * f z)‖ ≤ Real.exp (-N*d) := by
       rw [Complex.norm_exp, Complex.mul_re]
       simp only [Complex.ofReal_re, Complex.ofReal_im, zero_mul, sub_zero]
@@ -88,7 +92,7 @@ theorem logistic_uniform_bound (f : C(K,ℂ)) (hf : ∀ z, (f z).re ≠ 0)
       rw [abs_of_neg hz] at hg
       nlinarith
     exact (logistic_left_bound (hb.trans hsmall)).trans (by linarith)
-  · rw [if_neg hz, sub_zero]
+  · rw [ite_eq_right hz, sub_zero]
     have hb : ‖(Complex.exp ((N:ℂ) * f z))⁻¹‖ ≤ Real.exp (-N*d) := by
       rw [← Complex.exp_neg, Complex.norm_exp, Complex.neg_re, Complex.mul_re]
       simp only [Complex.ofReal_re, Complex.ofReal_im, zero_mul, sub_zero]

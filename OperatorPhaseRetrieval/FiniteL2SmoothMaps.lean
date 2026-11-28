@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.EuclideanCoordinateMaps
-import OperatorPhaseRetrieval.FiniteExpressionContinuity
+module
+
+public import OperatorPhaseRetrieval.EuclideanCoordinateMaps
+public import OperatorPhaseRetrieval.FiniteExpressionContinuity
+
+@[expose] public section
 
 noncomputable section
 
@@ -51,7 +55,7 @@ theorem finiteL2_compLp_contDiff (ψ : ℂ → ℂ) (hψ : LipschitzWith 1 ψ) (
 
 theorem finiteL2_conjugate_contDiff :
     ContDiff ℝ ⊤ (conjugateL2 : L2 (finiteProbability ι) → L2 (finiteProbability ι)) :=
-  finiteL2_compLp_contDiff ι _ Complex.isometry_conj.lipschitz (map_zero _)
+  finiteL2_compLp_contDiff ι _ Complex.isometry_conj.lipschitzWith (map_zero _)
     Complex.conjCLE.contDiff
 
 end OperatorPhaseRetrieval

@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.SmoothModulus
+module
+
+public import OperatorPhaseRetrieval.SmoothModulus
+
+@[expose] public section
 
 noncomputable section
 
@@ -42,7 +46,7 @@ theorem euclideanCoordinateMap_contDiff (ψ : ℂ → ℂ) (hψ : ContDiff ℝ �
   apply PiLp.contDiff_toLp.comp
   apply contDiff_pi.mpr
   intro i
-  exact hψ.comp ((contDiff_apply ℝ ℂ i).comp PiLp.contDiff_ofLp)
+  exact hψ.comp (contDiff_piLp_apply 2)
 
 theorem euclideanCoordinateMap_error_le (ψ φ : ℂ → ℂ) (ε : ℝ) (hε : 0 ≤ ε)
     (h : ∀ z, ‖ψ z - φ z‖ ≤ ε) (x : EuclideanSpace ℂ ι) :

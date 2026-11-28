@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.CompactModel
-import OperatorPhaseRetrieval.GapApproximation
+module
+
+public import OperatorPhaseRetrieval.CompactModel
+public import OperatorPhaseRetrieval.GapApproximation
+
+@[expose] public section
 
 noncomputable section
 

@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HaarProductPoincare
+module
+
+public import OperatorPhaseRetrieval.HaarProductPoincare
+
+@[expose] public section
 
 noncomputable section
 

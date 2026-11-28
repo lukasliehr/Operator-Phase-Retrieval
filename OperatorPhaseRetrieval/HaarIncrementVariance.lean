@@ -1,5 +1,10 @@
-import OperatorPhaseRetrieval.AveragedVariance
-import Mathlib.MeasureTheory.Group.Integral
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import OperatorPhaseRetrieval.AveragedVariance
+public import Mathlib.MeasureTheory.Group.Integral
+
+@[expose] public section
 
 noncomputable section
 

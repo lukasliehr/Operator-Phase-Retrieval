@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HermitianGeometry
+module
+
+public import OperatorPhaseRetrieval.HermitianGeometry
+
+@[expose] public section
 
 noncomputable section
 

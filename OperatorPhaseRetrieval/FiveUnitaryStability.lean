@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.HaarExpressionFourthMoments
-import OperatorPhaseRetrieval.HaarModelSelection
-import OperatorPhaseRetrieval.Completion
+module
+
+public import OperatorPhaseRetrieval.HaarExpressionFourthMoments
+public import OperatorPhaseRetrieval.HaarModelSelection
+public import OperatorPhaseRetrieval.Completion
+
+@[expose] public section
 
 /-!
 # Five unitary measurements with uniform stability

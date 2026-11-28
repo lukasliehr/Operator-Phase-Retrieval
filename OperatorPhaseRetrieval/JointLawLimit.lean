@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.ModelSelection
-import Mathlib.MeasureTheory.Measure.Prokhorov
+module
+
+public import OperatorPhaseRetrieval.ModelSelection
+public import Mathlib.MeasureTheory.Measure.Prokhorov
+
+@[expose] public section
 
 /-!
 # Tightness and weak limits of joint coordinate laws
@@ -163,8 +167,8 @@ the joint weak limit. This is the step used for the auxiliary Gaussian seed. -/
 theorem jointLaw_limit_marginal
     {P : ℕ → ProbabilityMeasure (ℕ → ℂ)} {Q : ProbabilityMeasure (ℕ → ℂ)}
     (hlim : Tendsto P atTop (𝓝 Q)) (r : ℕ) (γ : ProbabilityMeasure ℂ)
-    (hγ : Tendsto (fun n => (P n).map (measurable_pi_apply r).aemeasurable) atTop (𝓝 γ)) :
-    Q.map (measurable_pi_apply r).aemeasurable = γ :=
+    (hγ : Tendsto (fun n => (P n).map (fun z => z r)) atTop (𝓝 γ)) :
+    Q.map (fun z => z r) = γ :=
   tendsto_nhds_unique
     (ProbabilityMeasure.tendsto_map_of_tendsto_of_continuous P Q hlim (continuous_apply r)) hγ
 

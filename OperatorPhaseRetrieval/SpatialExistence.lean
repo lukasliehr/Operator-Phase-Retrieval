@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.ProbabilitySpatial
-import OperatorPhaseRetrieval.WeightedL2
-import Mathlib.MeasureTheory.Measure.WithDensityFinite
+module
+
+public import OperatorPhaseRetrieval.ProbabilitySpatial
+public import OperatorPhaseRetrieval.WeightedL2
+public import Mathlib.MeasureTheory.Measure.WithDensityFinite
+
+@[expose] public section
 
 noncomputable section
 

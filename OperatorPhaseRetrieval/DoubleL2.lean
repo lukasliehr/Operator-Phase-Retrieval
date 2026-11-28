@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.AmplificationTheorem
-import OperatorPhaseRetrieval.WeightedL2
+module
+
+public import OperatorPhaseRetrieval.AmplificationTheorem
+public import OperatorPhaseRetrieval.WeightedL2
+
+@[expose] public section
 
 noncomputable section
 

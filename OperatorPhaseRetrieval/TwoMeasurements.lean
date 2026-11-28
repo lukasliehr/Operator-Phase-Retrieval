@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.PhaseDistance
-import OperatorPhaseRetrieval.BlockRotation
+module
+
+public import OperatorPhaseRetrieval.PhaseDistance
+public import OperatorPhaseRetrieval.BlockRotation
+
+@[expose] public section
 
 /-! # Two unitary measurements on a two-dimensional space
 

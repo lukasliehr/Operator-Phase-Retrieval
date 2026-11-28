@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.FiniteExpressionContinuity
+module
+
+public import OperatorPhaseRetrieval.FiniteExpressionContinuity
+
+@[expose] public section
 
 noncomputable section
 

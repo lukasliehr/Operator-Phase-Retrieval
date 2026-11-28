@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HaarProductDirections
-import OperatorPhaseRetrieval.HaarUnitaryPoincare
+module
+
+public import OperatorPhaseRetrieval.HaarProductDirections
+public import OperatorPhaseRetrieval.HaarUnitaryPoincare
+
+@[expose] public section
 
 noncomputable section
 

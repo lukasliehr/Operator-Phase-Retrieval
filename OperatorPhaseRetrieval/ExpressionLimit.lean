@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.ExpressionModels
-import OperatorPhaseRetrieval.LimitStability
+module
+
+public import OperatorPhaseRetrieval.ExpressionModels
+public import OperatorPhaseRetrieval.LimitStability
+
+@[expose] public section
 
 /-!
 # The limit construction from evaluated models
@@ -80,7 +84,7 @@ theorem fiveUnitaryStability_real_of_expression_models
     (hStable : ∀ n, StableUnitaryFamily stabilityConstant (fun j : Fin 5 => U n j.succ))
     (r : ℕ) (γ : ProbabilityMeasure ℂ) [NullSingletonClass (γ : Measure ℂ)]
     (hγ : Tendsto (fun n => (StabilityExpression.jointLaw (μ n) (U n)).map
-      (measurable_pi_apply r).aemeasurable) atTop (𝓝 γ)) :
+      (fun z => z r)) atTop (𝓝 γ)) :
     FiveUnitaryStability (volume : Measure ℝ) := by
   obtain ⟨Q, φ, hφ, hlim, hQ⟩ := exists_stable_expression_limit μ U M hM hStable
   have hmap := jointLaw_limit_marginal hlim r γ (hγ.comp hφ.tendsto_atTop)

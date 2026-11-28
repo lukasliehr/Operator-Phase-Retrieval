@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.JointLawLimit
+module
+
+public import OperatorPhaseRetrieval.JointLawLimit
+
+@[expose] public section
 
 /-!
 # Unbounded observables under weak convergence

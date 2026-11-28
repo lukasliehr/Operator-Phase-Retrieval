@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.TwoUnitaryBaire
-import OperatorPhaseRetrieval.TwoUnitaryRecovery
-import OperatorPhaseRetrieval.TwoUnitarySpatial
+module
+
+public import OperatorPhaseRetrieval.TwoUnitaryBaire
+public import OperatorPhaseRetrieval.TwoUnitaryRecovery
+public import OperatorPhaseRetrieval.TwoUnitarySpatial
+
+@[expose] public section
 
 /-! Phase retrieval by the identity and one arbitrarily close unitary on complex L²(ℝ). -/
 noncomputable section

@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.DiagonalSmoothing
+module
+
+public import OperatorPhaseRetrieval.DiagonalSmoothing
+
+@[expose] public section
 
 noncomputable section
 

@@ -1,7 +1,11 @@
-import OperatorPhaseRetrieval.HaarPathDifferentials
-import OperatorPhaseRetrieval.FiniteL2SmoothMaps
-import OperatorPhaseRetrieval.TransformedHaarExpressions
-import OperatorPhaseRetrieval.FiniteCoordinateBounds
+module
+
+public import OperatorPhaseRetrieval.HaarPathDifferentials
+public import OperatorPhaseRetrieval.FiniteL2SmoothMaps
+public import OperatorPhaseRetrieval.TransformedHaarExpressions
+public import OperatorPhaseRetrieval.FiniteCoordinateBounds
+
+@[expose] public section
 
 noncomputable section
 

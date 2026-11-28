@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HaarMatrixMoments
+module
+
+public import OperatorPhaseRetrieval.HaarMatrixMoments
+
+@[expose] public section
 
 noncomputable section
 
@@ -15,9 +19,9 @@ theorem sum_diagonal_kernel (ι : Type*) [Fintype ι] [DecidableEq ι]
       (if j = i then (D-C) * (a i * b i) else 0) + C * a i * b j := by
     by_cases hij : i = j
     · subst j; simp; ring
-    · simp only [hij, Ne.symm hij, if_false]; ring
+    · simp only [hij, Ne.symm hij, ite_false]; ring
   simp_rw [he, Finset.sum_add_distrib]
-  simp only [Finset.sum_ite_eq', Finset.mem_univ, if_true, ← Finset.mul_sum,
+  simp only [Finset.sum_ite_eq', Finset.mem_univ, ite_true, ← Finset.mul_sum,
     ← Finset.sum_mul]
 
 variable (ι : Type*) [Fintype ι]
@@ -84,8 +88,8 @@ theorem haarDiagonal_sameRow_covariance (a b : ι → ℝ) (ha : ∑ j, a j = 0)
       else 1 / ((Fintype.card ι : ℝ) * (Fintype.card ι + 1)) := by
     by_cases hjl : j = l
     · subst l
-      simp only [if_true, ← pow_add, show 2 + 2 = 4 from rfl, haarEntry_fourthMoment]
-    · simpa only [hjl, if_false] using haarEntry_row_mixedMoment ι i j l hjl
+      simp only [ite_true, ← pow_add, show 2 + 2 = 4 from rfl, haarEntry_fourthMoment]
+    · simpa only [hjl, ite_false] using haarEntry_row_mixedMoment ι i j l hjl
   rw [haarDiagonal_mixedMoment_expansion]
   simp_rw [he]
   rw [sum_diagonal_kernel, ha]
@@ -106,8 +110,8 @@ theorem haarDiagonal_differentRow_covariance (a b : ι → ℝ) (ha : ∑ j, a j
       else 1 / ((Fintype.card ι : ℝ) ^ 2 - 1) := by
     by_cases hjl : j = l
     · subst l
-      simpa only [if_true] using haarEntry_column_mixedMoment ι i k j hik
-    · simpa only [hjl, if_false] using haarEntry_disjoint_mixedMoment ι i j k l hik hjl
+      simpa only [ite_true] using haarEntry_column_mixedMoment ι i k j hik
+    · simpa only [hjl, ite_false] using haarEntry_disjoint_mixedMoment ι i j k l hik hjl
   rw [haarDiagonal_mixedMoment_expansion]
   simp_rw [he]
   rw [sum_diagonal_kernel, ha]
@@ -169,8 +173,8 @@ theorem haarDiagonalPairing_covariance (a c b d : ι → ℝ) (ha : ∑ j, a j =
       else -(∑ j, a j * c j) / ((Fintype.card ι : ℝ) * ((Fintype.card ι : ℝ) ^ 2 - 1)) := by
     by_cases hik : i = k
     · subst k
-      simpa only [if_true] using haarDiagonal_sameRow_covariance ι a c ha i
-    · simpa only [hik, if_false] using haarDiagonal_differentRow_covariance ι a c ha i k hik
+      simpa only [ite_true] using haarDiagonal_sameRow_covariance ι a c ha i
+    · simpa only [hik, ite_false] using haarDiagonal_differentRow_covariance ι a c ha i k hik
   rw [hexpand]
   simp_rw [hc]
   rw [sum_diagonal_kernel]

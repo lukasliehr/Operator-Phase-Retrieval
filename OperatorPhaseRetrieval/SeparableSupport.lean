@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.SeparableProbability
+module
+
+public import OperatorPhaseRetrieval.SeparableProbability
+
+@[expose] public section
 
 /-! A σ-finite part supporting every function in a separable L² space. -/
 
@@ -13,7 +17,7 @@ variable {X : Type*} [MeasurableSpace X] {μ : Measure X} {s : Set X}
 
 /-- Extension by zero as an L² function. -/
 def zeroExtendL2Fun (hs : MeasurableSet s) (f : L2 (μ.restrict s)) : L2 μ :=
-  ((memLp_indicator_iff_restrict hs).mpr (Lp.memLp f)).toLp _
+  ((memLp_indicator_iff_restrict hs.nullMeasurableSet).mpr (Lp.memLp f)).toLp _
 
 theorem zeroExtendL2Fun_coeFn (hs : MeasurableSet s) (f : L2 (μ.restrict s)) :
     (zeroExtendL2Fun hs f : X → ℂ) =ᵐ[μ] s.indicator (fun x => f x) :=
@@ -42,7 +46,7 @@ def zeroExtendL2 (hs : MeasurableSet s) : L2 (μ.restrict s) →ₗᵢ[ℂ] L2 �
     by_cases hxs : x ∈ s <;> simp [hxs]
   norm_map' f := by
     change ‖zeroExtendL2Fun hs f‖ = ‖f‖
-    rw [zeroExtendL2Fun, Lp.norm_toLp, eLpNorm_indicator_eq_eLpNorm_restrict hs, Lp.norm_def]
+    rw [zeroExtendL2Fun, Lp.norm_toLp, eLpNorm_indicator_eq_eLpNorm_restrict hs.nullMeasurableSet, Lp.norm_def]
 
 theorem zeroExtendL2_coeFn (hs : MeasurableSet s) (f : L2 (μ.restrict s)) :
     (zeroExtendL2 hs f : X → ℂ) =ᵐ[μ] s.indicator (fun x => f x) :=

@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.RigidModel
+module
+
+public import OperatorPhaseRetrieval.RigidModel
+
+@[expose] public section
 
 noncomputable section
 

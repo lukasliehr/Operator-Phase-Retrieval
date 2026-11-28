@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HaarTracePairing
+module
+
+public import OperatorPhaseRetrieval.HaarTracePairing
+
+@[expose] public section
 
 noncomputable section
 

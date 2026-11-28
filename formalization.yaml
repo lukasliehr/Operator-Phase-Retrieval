@@ -1,0 +1,37 @@
+version: "v0.4"
+
+project:
+  name: "Informational completeness for pure quantum states: minimality and stability"
+  description: >-
+    A Lean 4 formalization of the two main theorems of the paper "Informational
+    completeness for pure quantum states: minimality and stability" by
+    L. Liehr, D. Omer, B. Pineau and M. A. Taylor. For every non-atomic measure
+    space (X, Σ, μ) with separable L²(X, μ), the identity operator and a
+    unitary arbitrarily close to the identity operator are informationally
+    complete with respect to pure states. Moreover, there are five unitary
+    operators that determine pure states stably. A further theorem, which is
+    not part of the paper, states that three unitary operators built from one
+    orthogonal projection are informationally complete.
+  authors:
+    - "Lukas Liehr"
+    - "Daniel Omer"
+    - "Ben Pineau"
+    - "Mitchell A. Taylor"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Lukas Liehr"
+
+classification:
+  arxiv: ["quant-ph", "math.MP"]
+  msc2020: ["81P50", "94A12", "30E10", "46C05", "60B20"]
+
+sources:
+  - title: "Informational completeness for pure quantum states: minimality and stability"
+    relationship: "formalizes"
+
+automation:
+  methods:
+    - method: "agent"
+
+review:
+  status: "author-verified"

@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.DiagonalSmoothing
-import OperatorPhaseRetrieval.AnalyticUniqueness
+module
+
+public import OperatorPhaseRetrieval.DiagonalSmoothing
+public import OperatorPhaseRetrieval.AnalyticUniqueness
+
+@[expose] public section
 
 noncomputable section
 
@@ -85,13 +89,13 @@ theorem polynomialSeries_majorant (p : ℕ → Polynomial ℂ) (a : ℕ → ℂ)
     have hw := (smoothingWeight_pos p n).le
     rw [norm_mul, norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hw]
     by_cases hn : n < N
-    · simp only [u, if_pos hn]
+    · simp only [u, ite_eq_left hn]
       exact mul_le_mul (mul_le_mul_of_nonneg_left (ha n) hw)
         (polynomial_eval_le_bound (p n) hz.le) (norm_nonneg _) (mul_nonneg hw hB)
     · have hN : N ≤ n := Nat.le_of_not_gt hn
       have hzn : ‖z‖ ≤ (n : ℝ)+2 := hz.le.trans (by exact_mod_cast Nat.add_le_add_right hN 2)
       have hp := polynomial_eval_le_bound (p n) hzn
-      simp only [u, if_neg hn]
+      simp only [u, ite_eq_right hn]
       calc
         smoothingWeight p n * ‖a n‖ * ‖(p n).eval z‖ ≤
             smoothingWeight p n * B * polynomialBound (p n) ((n : ℝ)+2) :=

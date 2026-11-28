@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.GaussianSphere
+module
+
+public import OperatorPhaseRetrieval.GaussianSphere
+
+@[expose] public section
 
 noncomputable section
 

@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.FiniteExpressionContinuity
-import OperatorPhaseRetrieval.HilbertSchmidtBounds
+module
+
+public import OperatorPhaseRetrieval.FiniteExpressionContinuity
+public import OperatorPhaseRetrieval.HilbertSchmidtBounds
+
+@[expose] public section
 
 noncomputable section
 

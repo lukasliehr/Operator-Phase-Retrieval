@@ -1,10 +1,14 @@
-import OperatorPhaseRetrieval.SpatialTransfer
-import OperatorPhaseRetrieval.Corollaries
-import OperatorPhaseRetrieval.NearIdentity
-import OperatorPhaseRetrieval.RigidModel
-import OperatorPhaseRetrieval.SpatialExistence
-import OperatorPhaseRetrieval.DoubleL2
-import OperatorPhaseRetrieval.StandardBorelDouble
+module
+
+public import OperatorPhaseRetrieval.SpatialTransfer
+public import OperatorPhaseRetrieval.Corollaries
+public import OperatorPhaseRetrieval.NearIdentity
+public import OperatorPhaseRetrieval.RigidModel
+public import OperatorPhaseRetrieval.SpatialExistence
+public import OperatorPhaseRetrieval.DoubleL2
+public import OperatorPhaseRetrieval.StandardBorelDouble
+
+@[expose] public section
 
 noncomputable section
 

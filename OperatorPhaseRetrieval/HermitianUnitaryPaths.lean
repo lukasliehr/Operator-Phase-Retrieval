@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HermitianGeometry
-import OperatorPhaseRetrieval.BalancedUnitaryLog
+module
+
+public import OperatorPhaseRetrieval.HermitianGeometry
+public import OperatorPhaseRetrieval.BalancedUnitaryLog
+
+@[expose] public section
 
 noncomputable section
 

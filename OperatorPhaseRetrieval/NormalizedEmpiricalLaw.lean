@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.EmpiricalLaw
-import OperatorPhaseRetrieval.NormalizedEmpirical
+module
+
+public import OperatorPhaseRetrieval.EmpiricalLaw
+public import OperatorPhaseRetrieval.NormalizedEmpirical
+
+@[expose] public section
 
 noncomputable section
 
@@ -12,7 +16,7 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [MeasurableSpace E] [BorelSpace E]
 
 def scaledProbability (ν : ProbabilityMeasure E) (b : ℝ) : ProbabilityMeasure E :=
-  ν.map ((measurable_id.const_smul b).aemeasurable)
+  ν.map (fun x => b • x)
 
 /-- Weak convergence of empirical laws is preserved by a convergent common
 rescaling when their first absolute moments remain bounded. -/
@@ -36,7 +40,8 @@ theorem empiricalLaw_rescale_tendsto (z : ℕ → E) (ν : ProbabilityMeasure E)
   have hv := empiricalAverage_rescale_tendsto z h hK (fun n => n+1) a b R _ ha hR hint
   have hi : (∫ x, h x ∂(scaledProbability ν b : Measure E)) =
       ∫ x, h (b • x) ∂(ν : Measure E) := by
-    exact integral_map (measurable_id.const_smul b).aemeasurable hK.continuous.measurable.aestronglyMeasurable
+    exact integral_map (continuous_const_smul b).measurable.aemeasurable
+      hK.continuous.measurable.aestronglyMeasurable
   rw [hi]
   simpa only [empiricalLaw_integral _ _ _ hK.continuous.measurable, empiricalAverage,
     smul_eq_mul] using hv

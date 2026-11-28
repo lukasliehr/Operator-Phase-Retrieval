@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.StabilityReduction
+module
+
+public import OperatorPhaseRetrieval.StabilityReduction
+
+@[expose] public section
 
 /-! # Passing stability bounds to limits and dense subsets -/
 

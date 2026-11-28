@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HaarBasisChange
+module
+
+public import OperatorPhaseRetrieval.HaarBasisChange
+
+@[expose] public section
 
 noncomputable section
 

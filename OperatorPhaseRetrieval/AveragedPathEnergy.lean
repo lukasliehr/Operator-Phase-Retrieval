@@ -1,4 +1,9 @@
-import OperatorPhaseRetrieval.CompactPathIntegration
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import OperatorPhaseRetrieval.CompactPathIntegration
+
+@[expose] public section
 
 noncomputable section
 

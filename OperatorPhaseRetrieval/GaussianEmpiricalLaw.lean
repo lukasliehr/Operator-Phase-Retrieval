@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.NormalizedEmpiricalLaw
-import OperatorPhaseRetrieval.FiniteGaussianSeed
-import Mathlib.Probability.Independence.InfinitePi
+module
+
+public import OperatorPhaseRetrieval.NormalizedEmpiricalLaw
+public import OperatorPhaseRetrieval.FiniteGaussianSeed
+public import Mathlib.Probability.Independence.InfinitePi
+
+@[expose] public section
 
 noncomputable section
 

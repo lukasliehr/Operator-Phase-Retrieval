@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.ThreePhase
+module
+
+public import OperatorPhaseRetrieval.ThreePhase
+
+@[expose] public section
 
 noncomputable section
 

@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.FiniteHaarStability
-import OperatorPhaseRetrieval.CoordinateStability
+module
+
+public import OperatorPhaseRetrieval.FiniteHaarStability
+public import OperatorPhaseRetrieval.CoordinateStability
+
+@[expose] public section
 
 /-!
 # Uniform finite-dimensional stability

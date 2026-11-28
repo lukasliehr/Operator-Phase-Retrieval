@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.L2
+module
+
+public import OperatorPhaseRetrieval.L2
+
+@[expose] public section
 
 noncomputable section
 

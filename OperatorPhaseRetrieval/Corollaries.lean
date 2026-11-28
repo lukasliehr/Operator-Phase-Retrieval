@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.L2
-import OperatorPhaseRetrieval.Projection
+module
+
+public import OperatorPhaseRetrieval.L2
+public import OperatorPhaseRetrieval.Projection
+
+@[expose] public section
 
 noncomputable section
 

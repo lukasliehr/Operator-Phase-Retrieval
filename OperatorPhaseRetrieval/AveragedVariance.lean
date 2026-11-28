@@ -1,4 +1,9 @@
-import Mathlib.Probability.Moments.Variance
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import Mathlib.Probability.Moments.Variance
+
+@[expose] public section
 
 noncomputable section
 
@@ -11,7 +16,7 @@ theorem integral_integral_sq_sub_eq_two_variance {Ω : Type*} [MeasurableSpace �
     (μ : Measure Ω) [IsProbabilityMeasure μ] (F : Ω → ℝ) (hF : MemLp F 2 μ) :
     (∫ x, ∫ y, (F y - F x) ^ 2 ∂μ ∂μ) = 2 * variance F μ := by
   have hi : Integrable F μ := hF.integrable (by norm_num)
-  have h2 : Integrable (fun x => F x ^ 2) μ := (memLp_two_iff_integrable_sq hF.1).mp hF
+  have h2 : Integrable (fun x => F x ^ 2) μ := (memLp_two_iff_integrable_sq hF.aestronglyMeasurable).mp hF
   let m := ∫ x, F x ∂μ
   let q := ∫ x, F x ^ 2 ∂μ
   have he (x : Ω) : (∫ y, (F y - F x) ^ 2 ∂μ) = q - (2*m) * F x + F x ^ 2 := by

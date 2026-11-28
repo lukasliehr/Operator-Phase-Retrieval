@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.SeparableSupport
-import OperatorPhaseRetrieval.FiveUnitaryStability
+module
+
+public import OperatorPhaseRetrieval.SeparableSupport
+public import OperatorPhaseRetrieval.FiveUnitaryStability
+
+@[expose] public section
 
 /-! Both main theorems for arbitrary atomless measures with separable L². -/
 

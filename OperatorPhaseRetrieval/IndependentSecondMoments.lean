@@ -1,4 +1,9 @@
-import Mathlib.Probability.Moments.Variance
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import Mathlib.Probability.Moments.Variance
+
+@[expose] public section
 
 noncomputable section
 

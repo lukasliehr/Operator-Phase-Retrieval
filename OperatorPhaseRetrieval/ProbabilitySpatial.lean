@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.AESpatialPullback
-import OperatorPhaseRetrieval.AtomlessCDF
+module
+
+public import OperatorPhaseRetrieval.AESpatialPullback
+public import OperatorPhaseRetrieval.AtomlessCDF
+
+@[expose] public section
 
 noncomputable section
 
@@ -26,7 +30,7 @@ theorem exists_probability_coordinates :
     (atomless_probability_uncountable μ) (by exact not_countable)
   let ν := Measure.map e μ
   have he : MeasurePreserving e μ ν := ⟨e.measurable, rfl⟩
-  let : IsProbabilityMeasure ν := by exact Measure.isProbabilityMeasure_map e.measurable.aemeasurable
+  let : IsProbabilityMeasure ν := inferInstanceAs (IsProbabilityMeasure (Measure.map e μ))
   let : NullSingletonClass ν := ⟨fun r => by
     rw [show ν = Measure.map e μ from rfl, Measure.map_apply e.measurable (measurableSet_singleton r)]
     have hp : e ⁻¹' {r} = {e.symm r} := by

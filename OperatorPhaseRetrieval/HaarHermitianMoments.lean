@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HermitianCoordinates
+module
+
+public import OperatorPhaseRetrieval.HermitianCoordinates
+
+@[expose] public section
 
 noncomputable section
 
@@ -9,23 +13,27 @@ namespace OperatorPhaseRetrieval
 
 variable (ι : Type*) [Fintype ι] [DecidableEq ι]
 
+theorem hsOperatorEquiv_apply_symm (T : EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι) :
+    hsOperatorEquiv ι ((hsOperatorEquiv ι).symm T) = T :=
+  (hsOperatorEquiv ι).apply_symm_apply T
+
 /-- Conjugation acts on the Hilbert space of Hermitian coefficient vectors. -/
 def hermitianConjugate (U : HaarUnitary (EuclideanSpace ℂ ι)) (A : hermitianCoordinates ι) :
     hermitianCoordinates ι :=
-  ⟨(hsOperatorEquiv ι).symm ((Unitary.linearIsometryEquiv U).conjStarAlgEquiv (hermitianCoordinateOperator ι A)), by
+  ⟨(hsOperatorEquiv ι).symm ((U : EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι) *
+      hermitianCoordinateOperator ι A *
+      ((U⁻¹ : HaarUnitary (EuclideanSpace ℂ ι)) : EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι)), by
     change IsSelfAdjoint (hsOperatorEquiv ι ((hsOperatorEquiv ι).symm _))
-    rw [LinearEquiv.apply_symm_apply]
-    exact IsSelfAdjoint.map (R := EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι)
-      (S := EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι)
-      (hermitianCoordinateOperator_isSelfAdjoint ι A) (Unitary.linearIsometryEquiv U).conjStarAlgEquiv⟩
+    rw [hsOperatorEquiv_apply_symm]
+    exact (hermitianCoordinateOperator_isSelfAdjoint ι A).conjugate
+      (U : EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι)⟩
 
 theorem hermitianConjugate_operator (U : HaarUnitary (EuclideanSpace ℂ ι)) (A : hermitianCoordinates ι) :
     hermitianCoordinateOperator ι (hermitianConjugate ι U A) =
       (U : EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι) * hermitianCoordinateOperator ι A *
         ((U⁻¹ : HaarUnitary (EuclideanSpace ℂ ι)) : EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι) := by
   change hsOperatorEquiv ι ((hsOperatorEquiv ι).symm _) = _
-  rw [LinearEquiv.apply_symm_apply]
-  rfl
+  rw [hsOperatorEquiv_apply_symm]
 
 @[fun_prop]
 theorem hermitianConjugate_continuous (A : hermitianCoordinates ι) :

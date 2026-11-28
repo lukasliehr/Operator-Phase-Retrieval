@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HaarDiagonalCovariance
-import OperatorPhaseRetrieval.SpectralCoordinates
+module
+
+public import OperatorPhaseRetrieval.HaarDiagonalCovariance
+public import OperatorPhaseRetrieval.SpectralCoordinates
+
+@[expose] public section
 
 noncomputable section
 
@@ -60,8 +64,8 @@ theorem crossHaarPairing_covariance [Nonempty ι]
     ((∑ j, a j * α j) / ((Fintype.card ι : ℝ) ^ 2 - 1)) *
       ((∑ i, β i * δ i) - (∑ i, β i) * (∑ i, δ i) / Fintype.card ι) := by
   have hm := haarInBases_measurePreserving ι b c
-  have hf : Measurable (fun U => haarDiagonalPairing ι a β U * haarDiagonalPairing ι α δ U) := by
-    fun_prop
+  have hf : Measurable (fun U => haarDiagonalPairing ι a β U * haarDiagonalPairing ι α δ U) :=
+    ((haarDiagonalPairing_continuous ι a β).mul (haarDiagonalPairing_continuous ι α δ)).measurable
   have h := integral_map
     (μ := (haarUnitaryProbability (EuclideanSpace ℂ ι) : Measure (HaarUnitary (EuclideanSpace ℂ ι))))
     hm.measurable.aemeasurable hf.aestronglyMeasurable

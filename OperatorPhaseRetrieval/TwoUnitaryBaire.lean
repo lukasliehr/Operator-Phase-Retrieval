@@ -1,7 +1,11 @@
-import OperatorPhaseRetrieval.TwoUnitarySwap
-import OperatorPhaseRetrieval.TwoUnitaryRotation
-import Mathlib.Topology.Baire.CompleteMetrizable
-import Mathlib.Topology.Algebra.Star.Unitary
+module
+
+public import OperatorPhaseRetrieval.TwoUnitarySwap
+public import OperatorPhaseRetrieval.TwoUnitaryRotation
+public import Mathlib.Topology.Baire.CompleteMetrizable
+public import Mathlib.Topology.Algebra.Star.Unitary
+
+@[expose] public section
 
 /-! A common near-identity unitary for the countable family of Fourier tests. -/
 noncomputable section
@@ -13,12 +17,16 @@ namespace OperatorPhaseRetrieval.TwoUnitary
 def periodic : Set Op :=
   {V | IsUnitary V ∧ ∃ d : ℕ, 0 < d ∧ Commute V (shift d)}
 
-private abbrev K := ↥(closure periodic)
+/-- Taking adjoints is continuous in the operator norm. -/
+instance : ContinuousStar Op :=
+  ⟨(ContinuousLinearMap.adjoint (𝕜 := ℂ) (E := H) (F := H)).continuous⟩
 
-private instance : CompleteSpace K :=
+abbrev K := ↥(closure periodic)
+
+instance : CompleteSpace K :=
   @IsClosed.completeSpace_coe _ _ _ _ isClosed_closure
 
-private theorem unitary_of_mem (x : K) : IsUnitary x.val :=
+theorem unitary_of_mem (x : K) : IsUnitary x.val :=
   (closure_minimal (fun _ hx => hx.1) isClosed_unitary : closure periodic ⊆
     (unitary Op : Set Op)) x.property
 
@@ -30,10 +38,10 @@ def fits (i j : ℤ) (k : ℕ) (A : Op) : Prop :=
   ‖A‖ < 3 ∧ ∀ a ∈ window k, ∀ b ∈ window k,
     ‖entry A a b - targetEntry i j a b‖ < 1 / ((k : ℝ) + 1)
 
-private def good (i j : ℤ) (k : ℕ) : Set K :=
+def good (i j : ℤ) (k : ℕ) : Set K :=
   {x | ∃ (N : ℕ) (z : ℂ), 0 < N ∧ z ≠ 0 ∧ fits i j k (readout x.val N z)}
 
-private theorem open_fits (i j : ℤ) (k : ℕ) : IsOpen {A | fits i j k A} := by
+theorem open_fits (i j : ℤ) (k : ℕ) : IsOpen {A | fits i j k A} := by
   let box := ↥(window k)
   have he : {A : Op | fits i j k A} = {A | ‖A‖ < 3} ∩
       ⋂ (a : box) (b : box), {A | ‖entry A a b - targetEntry i j a b‖ < 1 / ((k:ℝ)+1)} := by
@@ -46,14 +54,14 @@ private theorem open_fits (i j : ℤ) (k : ℕ) : IsOpen {A | fits i j k A} := b
   unfold entry
   fun_prop
 
-private theorem open_good (i j : ℤ) (k : ℕ) : IsOpen (good i j k) := by
+theorem open_good (i j : ℤ) (k : ℕ) : IsOpen (good i j k) := by
   apply isOpen_iff_mem_nhds.mpr
   rintro x ⟨N,z,hN,hz,hfit⟩
   have hc : Continuous (fun x : K => readout x.val N z) := by unfold readout; fun_prop
   have hs := (open_fits i j k).preimage hc
   exact Filter.mem_of_superset (hs.mem_nhds hfit) (fun y hy => ⟨N,z,hN,hz,hy⟩)
 
-private theorem dense_good (i j : ℤ) (k : ℕ)
+theorem dense_good (i j : ℤ) (k : ℕ)
     (step : ∀ V ∈ periodic, ∀ r : ℝ, 0 < r →
       ∃ U ∈ periodic, ‖U - V‖ < r ∧ ∃ (N : ℕ) (z : ℂ),
         0 < N ∧ z ≠ 0 ∧ fits i j k (readout U N z)) : Dense (good i j k) := by
@@ -68,7 +76,7 @@ private theorem dense_good (i j : ℤ) (k : ℕ)
   rw [dist_comm V U, dist_eq_norm U V] at this
   linarith
 
-private theorem entry_sub_bound (A B : Op) (a b : ℤ) :
+theorem entry_sub_bound (A B : Op) (a b : ℤ) :
     ‖entry A a b - entry B a b‖ ≤ ‖A - B‖ := by
   calc
     _ = ‖inner ℂ (basis a) ((A-B) (basis b))‖ := by
@@ -79,7 +87,7 @@ private theorem entry_sub_bound (A B : Op) (a b : ℤ) :
       exact (A-B).le_opNorm _
     _ = _ := by rw [basis.orthonormal.norm_eq_one, basis.orthonormal.norm_eq_one]; ring
 
-private theorem periodic_step (i j : ℤ) (k : ℕ) (V : Op) (hV : V ∈ periodic)
+theorem periodic_step (i j : ℤ) (k : ℕ) (V : Op) (hV : V ∈ periodic)
     (r : ℝ) (hr : 0 < r) :
     ∃ U ∈ periodic, ‖U - V‖ < r ∧ ∃ (N : ℕ) (z : ℂ),
       0 < N ∧ z ≠ 0 ∧ fits i j k (readout U N z) := by

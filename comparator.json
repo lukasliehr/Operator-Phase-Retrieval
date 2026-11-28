@@ -1,16 +1,12 @@
 {
-  "challenge_module": "Showcase",
-  "solution_module": "Showcase_WithProofs",
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
   "theorem_names": [
     "InformationalCompleteness.uniqueness_from_two_measurements",
     "InformationalCompleteness.stability_from_five_measurements",
     "InformationalCompleteness.uniqueness_from_three_measurements"
   ],
   "definition_names": [],
-  "permitted_axioms": [
-    "propext",
-    "Quot.sound",
-    "Classical.choice"
-  ],
-  "enable_nanoda": false
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
 }

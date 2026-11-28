@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.Stability
-import Mathlib.Tactic.DeriveCountable
+module
+
+public import OperatorPhaseRetrieval.Stability
+public import Mathlib.Tactic.DeriveCountable
+
+@[expose] public section
 
 /-!
 # Countable expressions and dimension-independent bounds
@@ -33,7 +37,7 @@ inductive StabilityExpression
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X}
 
 def conjugateL2 (f : L2 μ) : L2 μ :=
-  Complex.isometry_conj.lipschitz.compLp (map_zero _) f
+  Complex.isometry_conj.lipschitzWith.compLp (map_zero _) f
 
 theorem lipschitz_complex_modulus : LipschitzWith 1 (fun z : ℂ => (‖z‖ : ℂ)) := by
   apply LipschitzWith.of_dist_le_mul
@@ -47,21 +51,21 @@ def complexModulusL2 (f : L2 μ) : L2 μ :=
 
 theorem conjugateL2_coeFn (f : L2 μ) :
     (conjugateL2 f : X → ℂ) =ᵐ[μ] (fun x => star (f x)) :=
-  Complex.isometry_conj.lipschitz.coeFn_compLp (map_zero _) f
+  Complex.isometry_conj.lipschitzWith.coeFn_compLp (map_zero _) f
 
 theorem complexModulusL2_coeFn (f : L2 μ) :
     (complexModulusL2 f : X → ℂ) =ᵐ[μ] (fun x => (‖f x‖ : ℂ)) :=
   lipschitz_complex_modulus.coeFn_compLp (by simp) f
 
 theorem conjugateL2_norm_le (f : L2 μ) : ‖conjugateL2 f‖ ≤ ‖f‖ := by
-  simpa [conjugateL2] using Complex.isometry_conj.lipschitz.norm_compLp_le (map_zero _) f
+  simpa [conjugateL2] using Complex.isometry_conj.lipschitzWith.norm_compLp_le (map_zero _) f
 
 theorem complexModulusL2_norm_le (f : L2 μ) : ‖complexModulusL2 f‖ ≤ ‖f‖ := by
   simpa [complexModulusL2] using lipschitz_complex_modulus.norm_compLp_le (by simp) f
 
 theorem conjugateL2_sub_le (f g : L2 μ) : ‖conjugateL2 f - conjugateL2 g‖ ≤ ‖f - g‖ := by
   simpa [conjugateL2] using
-    Complex.isometry_conj.lipschitz.norm_compLp_sub_le (map_zero _) f g
+    Complex.isometry_conj.lipschitzWith.norm_compLp_sub_le (map_zero _) f g
 
 theorem complexModulusL2_sub_le (f g : L2 μ) :
     ‖complexModulusL2 f - complexModulusL2 g‖ ≤ ‖f - g‖ := by

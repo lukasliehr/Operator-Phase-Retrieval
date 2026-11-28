@@ -1,7 +1,11 @@
-import Mathlib.Analysis.Fourier.AddCircle
-import Mathlib.MeasureTheory.Function.Holder
-import OperatorPhaseRetrieval.L2
-import OperatorPhaseRetrieval.Projection
+module
+
+public import Mathlib.Analysis.Fourier.AddCircle
+public import Mathlib.MeasureTheory.Function.Holder
+public import OperatorPhaseRetrieval.L2
+public import OperatorPhaseRetrieval.Projection
+
+@[expose] public section
 
 /-! Fourier shifts and the quadratic forms determined by the two magnitudes. -/
 noncomputable section
@@ -27,7 +31,7 @@ theorem basis_ext {A B : Op} (h : ∀ b : ℤ, A (basis b) = B (basis b)) : A = 
   · rintro _ ⟨b,rfl⟩
     exact h b
 
-private def permBasis (r : Equiv.Perm ℤ) : HilbertBasis ℤ ℂ H :=
+def permBasis (r : Equiv.Perm ℤ) : HilbertBasis ℤ ℂ H :=
   HilbertBasis.mk (basis.orthonormal.comp r r.injective) (by
     rw [Set.range_comp, r.surjective.range_eq, Set.image_univ, basis.dense_span])
 
@@ -66,10 +70,10 @@ theorem shift_nat_mul (m : ℕ) (d : ℤ) : shift (m*d) = (shift d)^m := by
     simp only [shift_basis, zero_add, one_apply_eq_self]
   | succ m ih => rw [Nat.cast_succ, add_mul, one_mul, shift_add, ih, pow_succ]
 
-private def multiplier (N : ℤ) : Op :=
+def multiplier (N : ℤ) : Op :=
   (ContinuousLinearMap.mul ℂ ℂ).holderL μ ∞ 2 2 (fourierLp ∞ N)
 
-private theorem multiplier_ae (N : ℤ) (h : H) :
+theorem multiplier_ae (N : ℤ) (h : H) :
     (multiplier N h : UnitAddCircle → ℂ) =ᵐ[μ] fun x => fourier N x * h x := by
   filter_upwards [ContinuousLinearMap.coeFn_holder (μ := μ) (r := 2)
     (ContinuousLinearMap.mul ℂ ℂ) (fourierLp ∞ N) h, coeFn_fourierLp (T := 1) ∞ N]

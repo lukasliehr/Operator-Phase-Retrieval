@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.PhaseDistance
+module
+
+public import OperatorPhaseRetrieval.PhaseDistance
+
+@[expose] public section
 
 /-! # Orthogonal-pair reduction
 

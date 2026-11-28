@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HaarHermitianMean
+module
+
+public import OperatorPhaseRetrieval.HaarHermitianMean
+
+@[expose] public section
 
 noncomputable section
 

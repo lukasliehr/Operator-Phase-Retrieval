@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.ThreePhase
+module
+
+public import OperatorPhaseRetrieval.ThreePhase
+
+@[expose] public section
 
 noncomputable section
 
@@ -189,7 +193,8 @@ theorem analytic_normSq_on {F : ℂ → ℂ} {U : Set ℂ} (hF : AnalyticOnNhd �
   have h : AnalyticAt ℝ F z := (hF z hz).restrictScalars
   have hr := (Complex.reCLM.analyticAt (F z)).comp h
   have hi := (Complex.imCLM.analyticAt (F z)).comp h
-  convert (hr.mul hr).add (hi.mul hi) using 1 <;> rfl
+  convert (hr.mul hr).add (hi.mul hi) using 1
+  rfl
 
 theorem analytic_normSq {F : ℂ → ℂ} (hF : AnalyticOnNhd ℂ F univ) :
     AnalyticOnNhd ℝ (fun z => Complex.normSq (F z)) univ := by
@@ -197,7 +202,8 @@ theorem analytic_normSq {F : ℂ → ℂ} (hF : AnalyticOnNhd ℂ F univ) :
   have h : AnalyticAt ℝ F z := (hF z (mem_univ z)).restrictScalars
   have hr := (Complex.reCLM.analyticAt (F z)).comp h
   have hi := (Complex.imCLM.analyticAt (F z)).comp h
-  convert (hr.mul hr).add (hi.mul hi) using 1 <;> rfl
+  convert (hr.mul hr).add (hi.mul hi) using 1
+  rfl
 
 /-- Positive area equality of entire-function moduli propagates everywhere. -/
 theorem entire_norm_eq_of_positive_measure {F G : ℂ → ℂ}

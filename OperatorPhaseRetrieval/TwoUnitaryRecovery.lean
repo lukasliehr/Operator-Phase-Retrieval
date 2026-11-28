@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.TwoUnitaryFourier
+module
+
+public import OperatorPhaseRetrieval.TwoUnitaryFourier
+
+@[expose] public section
 
 /-! Bounded convergence of Fourier matrix entries and recovery of a vector from its Gram matrix. -/
 noncomputable section
@@ -7,27 +11,27 @@ open Filter Set
 open scoped InnerProductSpace ComplexConjugate Topology
 namespace OperatorPhaseRetrieval.TwoUnitary
 
-private def matrixUnit (i j : ℤ) : Op := InnerProductSpace.rankOne ℂ (basis i) (basis j)
+def matrixUnit (i j : ℤ) : Op := InnerProductSpace.rankOne ℂ (basis i) (basis j)
 
-private theorem entry_matrixUnit (i j a b : ℤ) :
+theorem entry_matrixUnit (i j a b : ℤ) :
     entry (matrixUnit i j) a b = if a = i ∧ b = j then 1 else 0 := by
   have orth := orthonormal_iff_ite.mp basis.orthonormal
   simp only [entry, matrixUnit, InnerProductSpace.rankOne_apply, inner_smul_right, orth]
   split_ifs <;> simp_all
 
-private theorem quad_matrixUnit (i j : ℤ) (h : H) :
+theorem quad_matrixUnit (i j : ℤ) (h : H) :
     quad (matrixUnit i j) h = conj (basis.repr h i) * basis.repr h j := by
   simp only [quad, matrixUnit, InnerProductSpace.rankOne_apply, inner_smul_right,
     HilbertBasis.repr_apply_apply, inner_conj_symm]
   ring
 
-private theorem norm_matrixUnit (i j : ℤ) : ‖matrixUnit i j‖ = 1 := by
+theorem norm_matrixUnit (i j : ℤ) : ‖matrixUnit i j‖ = 1 := by
   rw [matrixUnit, InnerProductSpace.norm_rankOne, basis.orthonormal.norm_eq_one,
     basis.orthonormal.norm_eq_one, one_mul]
 
-private abbrev fourierSpan := Submodule.span ℂ (Set.range ⇑basis)
+abbrev fourierSpan := Submodule.span ℂ (Set.range ⇑basis)
 
-private theorem tendsto_on_span (A : ℕ → Op) (E : Op)
+theorem tendsto_on_span (A : ℕ → Op) (E : Op)
     (he : ∀ a b, Tendsto (fun n => entry (A n) a b) atTop (𝓝 (entry E a b)))
     {x y : H} (hx : x ∈ fourierSpan) (hy : y ∈ fourierSpan) :
     Tendsto (fun n => inner ℂ x (A n y)) atTop (𝓝 (inner ℂ x (E y))) := by
@@ -44,7 +48,7 @@ private theorem tendsto_on_span (A : ℕ → Op) (E : Op)
   | add x y _ _ hx hy => simpa only [inner_add_left] using hx.add hy
   | smul c x _ hx => simpa only [inner_smul_left] using hx.const_mul (conj c)
 
-private theorem quad_diff_le (B : Op) (h p : H) :
+theorem quad_diff_le (B : Op) (h p : H) :
     ‖quad B h - quad B p‖ ≤ ‖B‖ * ‖h-p‖ * (‖h‖ + ‖p‖) := by
   have hid : quad B h - quad B p = inner ℂ (h-p) (B h) + inner ℂ p (B (h-p)) := by
     simp only [quad, map_sub, inner_sub_left, inner_sub_right]

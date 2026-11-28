@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.HaarSphere
-import Mathlib.Probability.Distributions.Gaussian.Multivariate
-import Mathlib.Analysis.Normed.Module.Normalize
+module
+
+public import OperatorPhaseRetrieval.HaarSphere
+public import Mathlib.Probability.Distributions.Gaussian.Multivariate
+public import Mathlib.Analysis.Normed.Module.Normalize
+
+@[expose] public section
 
 noncomputable section
 
@@ -44,7 +48,7 @@ theorem sphereDirection_isometry_ae (x0 : sphere (0 : E) 1) (e : E ≃ₗᵢ[ℝ
   filter_upwards [(stdGaussian E).ae_ne (0 : E)] with x hx
   have hex : e x ≠ 0 := fun h => hx (e.injective (h.trans e.map_zero.symm))
   apply Subtype.ext
-  simp only [sphereDirection, dif_neg hx, dif_neg hex]
+  simp only [sphereDirection, dite_eq_right hx, dite_eq_right hex]
   change NormedSpace.normalize (e x) = e (NormedSpace.normalize x)
   simp only [NormedSpace.normalize, map_smul, e.norm_map]
 
@@ -74,7 +78,8 @@ has no effect on this law. -/
 theorem gaussian_direction_uniform (x0 : sphere (0 : E) 1) :
     (stdGaussian E).map (sphereDirection x0) = (uniformSphere E : Measure _) := by
   let ν := (stdGaussian E).map (sphereDirection x0)
-  let := Measure.isProbabilityMeasure_map (μ := stdGaussian E) (sphereDirection_measurable x0).aemeasurable
+  let : IsProbabilityMeasure ν :=
+    inferInstanceAs (IsProbabilityMeasure ((stdGaussian E).map (sphereDirection x0)))
   have hpres (u : HaarUnitary E) : MeasurePreserving (unitarySphereAction E u) ν ν :=
     ⟨(unitarySphereAction_continuous E).measurable.comp (measurable_const.prodMk measurable_id),
       gaussian_direction_invariant x0 (haarUnitaryRealEquiv E u)⟩

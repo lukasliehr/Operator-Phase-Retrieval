@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.GaussianEmpiricalLaw
-import OperatorPhaseRetrieval.FiniteEmpiricalLaw
-import OperatorPhaseRetrieval.FiniteExpressionContinuity
+module
+
+public import OperatorPhaseRetrieval.GaussianEmpiricalLaw
+public import OperatorPhaseRetrieval.FiniteEmpiricalLaw
+public import OperatorPhaseRetrieval.FiniteExpressionContinuity
+
+@[expose] public section
 
 noncomputable section
 
@@ -85,7 +89,7 @@ theorem normalizedGaussian_error_tendstoInMeasure :
   apply tendstoInMeasure_of_tendsto_ae
   · intro n
     have hm : Measurable (fun z : ℕ → ℂ => fun i : Fin (n+1) => z i) :=
-      measurable_pi_lambda _ (fun i => measurable_pi_apply (i : ℕ))
+      measurable_pi_iff.mpr (fun i => measurable_pi_apply (i : ℕ))
     exact ((finiteGaussianLaw_error_measurable (Fin (n+1))).comp hm).aestronglyMeasurable
   · filter_upwards [normalizedGaussian_empiricalLaw_tendsto] with z hz
     have h := gaussianMarginalError_continuous.continuousAt.tendsto.comp hz
@@ -108,7 +112,7 @@ theorem finiteHaarLaw_error_probability_tendsto (ε : ℝ) (hε : 0 < ε) :
     simp only [Set.mem_Ici] at hH
     rw [hH, ← iidComplexGaussian_prefix_law (n+1)]
     have hm : Measurable (fun z : ℕ → ℂ => fun i : Fin (n+1) => z i) :=
-      measurable_pi_lambda _ (fun i => measurable_pi_apply (i : ℕ))
+      measurable_pi_iff.mpr (fun i => measurable_pi_apply (i : ℕ))
     have hs : MeasurableSet {z : Fin (n+1) → ℂ |
         ε ≤ gaussianMarginalError (finiteGaussianLaw (Fin (n+1)) z)} :=
       measurableSet_le measurable_const (finiteGaussianLaw_error_measurable (Fin (n+1)))

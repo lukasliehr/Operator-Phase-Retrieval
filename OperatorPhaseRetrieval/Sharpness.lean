@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.TwoMeasurements
-import OperatorPhaseRetrieval.DiagonalComplement
-import OperatorPhaseRetrieval.AmplificationTheorem
+module
+
+public import OperatorPhaseRetrieval.TwoMeasurements
+public import OperatorPhaseRetrieval.DiagonalComplement
+public import OperatorPhaseRetrieval.AmplificationTheorem
+
+@[expose] public section
 
 /-! # Sharpness of the single-projection family of Theorem C -/
 

@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.PhaseDistance
-import OperatorPhaseRetrieval.MagnitudeDistance
-import OperatorPhaseRetrieval.SpatialExistence
+module
+
+public import OperatorPhaseRetrieval.PhaseDistance
+public import OperatorPhaseRetrieval.MagnitudeDistance
+public import OperatorPhaseRetrieval.SpatialExistence
+
+@[expose] public section
 
 /-!
 # Unitary stability estimates and their transport

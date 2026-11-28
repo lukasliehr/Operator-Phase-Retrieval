@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.FiniteHaarModels
-import OperatorPhaseRetrieval.GaussianProducts
+module
+
+public import OperatorPhaseRetrieval.FiniteHaarModels
+public import OperatorPhaseRetrieval.GaussianProducts
+
+@[expose] public section
 
 noncomputable section
 
@@ -17,7 +21,7 @@ omit [Nonempty ι] [MeasurableSpace ι] [MeasurableSingletonClass ι] in
 theorem finiteGaussianSeed_measurable : Measurable (finiteGaussianSeed ι) := by
   have hn : Measurable (NormedSpace.normalize : EuclideanSpace ℂ ι → EuclideanSpace ℂ ι) :=
     measurable_norm.inv.smul measurable_id
-  apply measurable_pi_lambda
+  apply measurable_pi_iff.mpr
   intro i
   exact (((PiLp.continuous_apply 2 (fun _ : ι => ℂ) i).const_smul
     (Real.sqrt (Fintype.card ι))).measurable.comp hn)

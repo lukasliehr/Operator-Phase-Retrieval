@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.Amplification
-import OperatorPhaseRetrieval.BlockRotation
+module
+
+public import OperatorPhaseRetrieval.Amplification
+public import OperatorPhaseRetrieval.BlockRotation
+
+@[expose] public section
 
 noncomputable section
 

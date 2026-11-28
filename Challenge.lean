@@ -1,11 +1,18 @@
-import OperatorPhaseRetrieval
+module
+
+public import Mathlib.Analysis.CStarAlgebra.Classes
+public import Mathlib.Analysis.Complex.Circle
+public import Mathlib.Analysis.InnerProductSpace.Adjoint
+public import Mathlib.MeasureTheory.Function.L2Space
+
+@[expose] public section
 
 /-!
 # Informational completeness for pure quantum states
 
 Theorems A and B are the two main results of the paper "Informational completeness for pure
 quantum states: minimality and stability" by L. Liehr, D. Omer, B. Pineau and M. A. Taylor.
-Theorem C is a further result. The definitions and statements are those of `Showcase.lean`.
+Theorem C is a further result. The proofs are in `Solution.lean`.
 -/
 
 open MeasureTheory TopologicalSpace Complex
@@ -53,18 +60,18 @@ def DeterminePureStatesStably {m : ℕ} (U : Fin m → Operator μ) : Prop :=
 /-- Theorem A: the identity and a unitary operator close to it are informationally complete. -/
 theorem uniqueness_from_two_measurements (hμ : NonAtomic μ) [SeparableSpace L²(μ)] :
     ∀ ε > 0, ∃ U : Operator μ, IsUnitary U ∧ ‖U - 1‖ < ε ∧ InformationallyComplete ![1, U] := by
-  exact OperatorPhaseRetrieval.uniqueness_from_two_measurements μ hμ
+  sorry
 
 /-- Theorem B: five unitary operators, the first one the identity, determine pure states stably. -/
 theorem stability_from_five_measurements (hμ : NonAtomic μ) [SeparableSpace L²(μ)] :
     ∃ U : Fin 5 → Operator μ, (∀ j, IsUnitary (U j)) ∧ U 0 = 1 ∧ DeterminePureStatesStably U := by
-  exact OperatorPhaseRetrieval.stability_from_five_measurements μ hμ
+  sorry
 
 /-- Theorem C: three unitary operators built from one projection are informationally complete. -/
 theorem uniqueness_from_three_measurements (hμ : NonAtomic μ) [SeparableSpace L²(μ)] :
     ∃ P : Operator μ, IsOrthogonalProjection P ∧ ∀ η : Fin 3 → 𝕋, Function.Injective η →
       let U := fun j => 1 + ((η j : ℂ) - 1) • P
       (∀ j, IsUnitary (U j)) ∧ InformationallyComplete U := by
-  exact OperatorPhaseRetrieval.uniqueness_from_three_measurements μ hμ
+  sorry
 
 end InformationalCompleteness

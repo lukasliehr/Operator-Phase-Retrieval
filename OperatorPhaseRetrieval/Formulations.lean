@@ -1,12 +1,16 @@
-import OperatorPhaseRetrieval.SeparableAtomless
-import Mathlib.Analysis.Complex.Circle
-import Mathlib.Analysis.SpecialFunctions.Complex.Arg
+module
+
+public import OperatorPhaseRetrieval.SeparableAtomless
+public import Mathlib.Analysis.Complex.Circle
+public import Mathlib.Analysis.SpecialFunctions.Complex.Arg
+
+@[expose] public section
 
 /-!
 # Formulations of the main notions
 
 Lemmas which translate the notions of the library into the formulations used in
-`Showcase.lean`: the modulus as an element of real `L²`, unitary operators as surjective
+`Challenge.lean`: the modulus as an element of real `L²`, unitary operators as surjective
 isometries, global phases `exp (θ * I)` and the distance modulo a global phase.
 -/
 
@@ -18,7 +22,7 @@ namespace OperatorPhaseRetrieval
 
 variable {X : Type*} [MeasurableSpace X] {μ : Measure X}
 
-/-- The modulus of an `L²` function as an element of real `L²`, defined as in `Showcase.lean`. -/
+/-- The modulus of an `L²` function as an element of real `L²`, defined as in `Challenge.lean`. -/
 def modulusLp (f : L2 μ) : Lp ℝ 2 μ :=
   MemLp.toLp (fun x => ‖f x‖) (Lp.memLp f).norm
 

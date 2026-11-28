@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.MathlibImports
-import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
-import Mathlib.MeasureTheory.Constructions.HaarToSphere
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
+public import Mathlib.MeasureTheory.Constructions.HaarToSphere
+
+@[expose] public section
 
 /-!
 # Spherical-cap probabilities

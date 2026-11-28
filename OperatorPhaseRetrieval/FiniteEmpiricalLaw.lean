@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.EmpiricalLaw
+module
+
+public import OperatorPhaseRetrieval.EmpiricalLaw
+
+@[expose] public section
 
 noncomputable section
 
@@ -13,8 +17,7 @@ variable {ι : Type*} [Fintype ι] [Nonempty ι]
 /-- The probability distribution giving equal mass to all entries of a finite vector. -/
 def finiteEmpiricalLaw (z : ι → E) : ProbabilityMeasure E :=
   letI : MeasurableSpace ι := ⊤
-  ⟨(finiteProbability ι).map z,
-    Measure.isProbabilityMeasure_map (measurable_of_countable _).aemeasurable⟩
+  ⟨(finiteProbability ι).map z, inferInstance⟩
 
 theorem finiteEmpiricalLaw_integral (z : ι → E) (h : E → ℝ) (hm : Measurable h) :
     ∫ x, h x ∂(finiteEmpiricalLaw z : Measure E) =

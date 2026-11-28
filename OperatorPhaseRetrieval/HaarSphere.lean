@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HaarUnitary
-import OperatorPhaseRetrieval.HomogeneousProbability
+module
+
+public import OperatorPhaseRetrieval.HaarUnitary
+public import OperatorPhaseRetrieval.HomogeneousProbability
+
+@[expose] public section
 
 noncomputable section
 

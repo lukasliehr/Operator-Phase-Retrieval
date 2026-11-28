@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.ExpressionBounds
+module
+
+public import OperatorPhaseRetrieval.ExpressionBounds
+
+@[expose] public section
 
 /-!
 # Density from constants, conjugation, and modulus
@@ -405,7 +409,7 @@ theorem submodule_eq_top_of_coordinates {ι : Type*} (ν : Measure (ι → ℂ))
   have hid : @Measurable (ι → ℂ) (ι → ℂ) (indicatorMeasurableSpace H hH h1 hm) MeasurableSpace.pi id :=
     by
       let : MeasurableSpace (ι → ℂ) := indicatorMeasurableSpace H hH h1 hm
-      exact measurable_pi_lambda _ hcoord
+      exact measurable_pi_iff.mpr hcoord
   apply submodule_eq_top_of_unitIndicators H hH
   intro s hs
   obtain ⟨hs', hi⟩ := hid hs

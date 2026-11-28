@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.ExpressionBounds
+module
+
+public import OperatorPhaseRetrieval.ExpressionBounds
+
+@[expose] public section
 
 noncomputable section
 

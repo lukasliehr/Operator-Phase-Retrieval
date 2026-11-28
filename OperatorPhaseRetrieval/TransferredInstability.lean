@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.Main
-import OperatorPhaseRetrieval.MagnitudeDistance
+module
+
+public import OperatorPhaseRetrieval.Main
+public import OperatorPhaseRetrieval.MagnitudeDistance
+
+@[expose] public section
 
 noncomputable section
 

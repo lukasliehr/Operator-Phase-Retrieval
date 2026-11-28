@@ -1,10 +1,14 @@
-import OperatorPhaseRetrieval.Formulations
-import OperatorPhaseRetrieval.TwoUnitaryMain
+module
+
+public import OperatorPhaseRetrieval.Formulations
+public import OperatorPhaseRetrieval.TwoUnitaryMain
+
+@[expose] public section
 
 /-!
 # The main theorems
 
-Theorems A, B and C in the formulation of `Showcase.lean`, with the definitions of that file
+Theorems A, B and C in the formulation of `Challenge.lean`, with the definitions of that file
 written out. Theorem A is obtained from the two measurements on `L²(ℝ)` in `TwoUnitaryMain.lean`,
 and Theorems B and C from the proof assembly in `SeparableAtomless.lean`.
 -/
@@ -58,7 +62,7 @@ theorem two_unitaries_of_separable_atomless (μ : Measure X) [SeparableSpace (L2
     exact transfer_two_unitaries W.symm
       (fun f g => by simpa using (hW (W.symm f) (W.symm g)).symm) ε V hV hne hpr
 
-/-- Theorem A in the formulation of `Showcase.lean`. -/
+/-- Theorem A in the formulation of `Challenge.lean`. -/
 theorem uniqueness_from_two_measurements (μ : Measure X) [SeparableSpace (L2 μ)]
     (hμ : AtomlessMeasure μ) :
     ∀ ε > 0, ∃ U : L2 μ →L[ℂ] L2 μ, (Isometry U ∧ Function.Surjective U) ∧ ‖U - 1‖ < ε ∧
@@ -73,7 +77,7 @@ theorem uniqueness_from_two_measurements (μ : Measure X) [SeparableSpace (L2 μ
   rw [← hθ]
   exact hc
 
-/-- Theorem B in the formulation of `Showcase.lean`. -/
+/-- Theorem B in the formulation of `Challenge.lean`. -/
 theorem stability_from_five_measurements (μ : Measure X) [SeparableSpace (L2 μ)]
     (hμ : AtomlessMeasure μ) :
     ∃ U : Fin 5 → L2 μ →L[ℂ] L2 μ, (∀ j, Isometry (U j) ∧ Function.Surjective (U j)) ∧
@@ -89,7 +93,7 @@ theorem stability_from_five_measurements (μ : Measure X) [SeparableSpace (L2 μ
     rfl
   · exact StableUnitaryFamily.iInf_le (fun f g => (hV f g).1) ψ φ
 
-/-- Theorem C in the formulation of `Showcase.lean`. -/
+/-- Theorem C in the formulation of `Challenge.lean`. -/
 theorem uniqueness_from_three_measurements (μ : Measure X) [SeparableSpace (L2 μ)]
     (hμ : AtomlessMeasure μ) :
     ∃ P : L2 μ →L[ℂ] L2 μ, (P * P = P ∧ star P = P) ∧

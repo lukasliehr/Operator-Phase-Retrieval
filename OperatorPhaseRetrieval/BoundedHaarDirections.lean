@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HaarHermitianSecondMoment
+module
+
+public import OperatorPhaseRetrieval.HaarHermitianSecondMoment
+
+@[expose] public section
 
 noncomputable section
 

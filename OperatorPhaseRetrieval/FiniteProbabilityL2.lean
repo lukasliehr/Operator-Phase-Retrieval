@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.FiniteHaarTheorem
-import OperatorPhaseRetrieval.Stability
+module
+
+public import OperatorPhaseRetrieval.FiniteHaarTheorem
+public import OperatorPhaseRetrieval.Stability
+
+@[expose] public section
 
 /-! Finite normalized counting spaces and their actual measure-theoretic L² spaces. -/
 

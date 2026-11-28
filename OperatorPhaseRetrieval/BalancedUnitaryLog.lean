@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.SpectralCoordinates
-import OperatorPhaseRetrieval.BalancedAngles
+module
+
+public import OperatorPhaseRetrieval.SpectralCoordinates
+public import OperatorPhaseRetrieval.BalancedAngles
+
+@[expose] public section
 
 noncomputable section
 

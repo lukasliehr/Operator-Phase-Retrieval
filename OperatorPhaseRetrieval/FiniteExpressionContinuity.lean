@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.FiniteHaarModels
+module
+
+public import OperatorPhaseRetrieval.FiniteHaarModels
+
+@[expose] public section
 
 noncomputable section
 

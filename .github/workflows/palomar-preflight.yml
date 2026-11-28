@@ -1,0 +1,21 @@
+# Runs Palomar's mechanical verification on the palomar branch of this repository.
+# It starts on every push to that branch and can also be started by hand.
+# A passing run is advisory and is not a submission.
+name: Palomar preflight
+
+on:
+  push:
+    branches: [palomar]
+  workflow_dispatch:
+
+jobs:
+  palomar-preflight:
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@952cc3697b3f335c6cc0c21932e55ee92921dd35
+    with:
+      repository: ${{ github.repository }}
+      commit: ${{ github.sha }}
+      pipeline_commit: 952cc3697b3f335c6cc0c21932e55ee92921dd35
+      request_id: preflight001
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: '{"comparator_config_path":"comparator.json","authorization_relationship":"I am a responsible author or maintainer"}'

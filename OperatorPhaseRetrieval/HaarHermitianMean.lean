@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.HermitianGeometry
+module
+
+public import OperatorPhaseRetrieval.HermitianGeometry
+
+@[expose] public section
 
 noncomputable section
 
@@ -31,7 +35,8 @@ theorem crossHaarPairing_mean (b c : OrthonormalBasis ι ℂ (EuclideanSpace ℂ
       ∂(haarUnitaryProbability (EuclideanSpace ℂ ι) : Measure _)) =
       (∑ i, a i) * (∑ i, β i) / Fintype.card ι := by
   have hm := haarInBases_measurePreserving ι b c
-  have hf : Measurable (fun U => haarDiagonalPairing ι a β U) := by fun_prop
+  have hf : Measurable (fun U => haarDiagonalPairing ι a β U) :=
+    (haarDiagonalPairing_continuous ι a β).measurable
   have h := integral_map
     (μ := (haarUnitaryProbability (EuclideanSpace ℂ ι) : Measure (HaarUnitary (EuclideanSpace ℂ ι))))
     hm.measurable.aemeasurable hf.aestronglyMeasurable

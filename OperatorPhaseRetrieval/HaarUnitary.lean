@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.SphereInvariance
-import Mathlib.Topology.Algebra.Star.Unitary
-import Mathlib.MeasureTheory.Measure.Haar.Unique
+module
+
+public import OperatorPhaseRetrieval.SphereInvariance
+public import Mathlib.Topology.Algebra.Star.Unitary
+public import Mathlib.MeasureTheory.Measure.Haar.Unique
+
+@[expose] public section
 
 noncomputable section
 
@@ -13,6 +17,12 @@ variable (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDim
 
 /-- The unitary group with the operator-norm topology inherited from endomorphisms. -/
 abbrev HaarUnitary := unitary (E →L[ℂ] E)
+
+set_option synthInstance.maxHeartbeats 400000 in
+/-- Shortcut instance: with all of Mathlib imported, the default search for it is slow. -/
+instance euclideanOperator_completeSpace (ι : Type*) [Fintype ι] :
+    CompleteSpace (EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι) :=
+  inferInstance
 
 theorem unitaryOperator_norm_le (u : HaarUnitary E) : ‖(u : E →L[ℂ] E)‖ ≤ 1 := by
   apply ContinuousLinearMap.opNorm_le_bound _ zero_le_one
@@ -43,9 +53,6 @@ instance haarUnitaryProbability_isMulRightInvariant :
     (haarUnitaryProbability E : Measure (HaarUnitary E)).IsMulRightInvariant := by
   constructor
   intro u
-  let := Measure.isProbabilityMeasure_map
-    (μ := (haarUnitaryProbability E : Measure (HaarUnitary E)))
-    (measurable_mul_const u).aemeasurable
   exact Measure.isHaarMeasure_eq_of_isProbabilityMeasure _ _
 
 def haarUnitaryRealEquiv (u : HaarUnitary E) : E ≃ₗᵢ[ℝ] E :=

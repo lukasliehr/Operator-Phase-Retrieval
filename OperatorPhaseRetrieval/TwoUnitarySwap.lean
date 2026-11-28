@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.TwoUnitaryFourier
-import Mathlib.Data.Int.ModEq
+module
+
+public import OperatorPhaseRetrieval.TwoUnitaryFourier
+public import Mathlib.Data.Int.ModEq
+
+@[expose] public section
 
 /-! A periodic permutation whose commutator with a Fourier shift agrees with a prescribed
 matrix unit on an arbitrary finite window. -/
@@ -9,11 +13,11 @@ open scoped InnerProductSpace
 
 namespace OperatorPhaseRetrieval.TwoUnitary
 
-private def swapClasses (L u v x : ℤ) : ℤ :=
+def swapClasses (L u v x : ℤ) : ℤ :=
   if x ≡ u [ZMOD L] then x + (v-u)
   else if x ≡ v [ZMOD L] then x + (u-v) else x
 
-private theorem swapClasses_involutive {L u v : ℤ} (huv : ¬ u ≡ v [ZMOD L]) :
+theorem swapClasses_involutive {L u v : ℤ} (huv : ¬ u ≡ v [ZMOD L]) :
     Function.Involutive (swapClasses L u v) := by
   intro x
   by_cases hu : x ≡ u [ZMOD L]
@@ -21,28 +25,28 @@ private theorem swapClasses_involutive {L u v : ℤ} (huv : ¬ u ≡ v [ZMOD L])
       convert hu.add_right (v-u) using 1
       ring
     have hn : ¬ x+(v-u) ≡ u [ZMOD L] := fun he => huv (he.symm.trans h)
-    simp only [swapClasses, if_pos hu, if_neg hn, if_pos h]
+    simp only [swapClasses, ite_eq_left hu, ite_eq_right hn, ite_eq_left h]
     ring
   · by_cases hv : x ≡ v [ZMOD L]
     · have h : x+(u-v) ≡ u [ZMOD L] := by
         convert hv.add_right (u-v) using 1
         ring
-      simp only [swapClasses, if_neg hu, if_pos hv, if_pos h]
+      simp only [swapClasses, ite_eq_right hu, ite_eq_left hv, ite_eq_left h]
       ring
     · simp [swapClasses, hu, hv]
 
-private def swapPerm {L u v : ℤ} (huv : ¬ u ≡ v [ZMOD L]) : Equiv.Perm ℤ where
+def swapPerm {L u v : ℤ} (huv : ¬ u ≡ v [ZMOD L]) : Equiv.Perm ℤ where
   toFun := swapClasses L u v
   invFun := swapClasses L u v
   left_inv := swapClasses_involutive huv
   right_inv := swapClasses_involutive huv
 
-private theorem swapClasses_period (L u v x : ℤ) :
+theorem swapClasses_period (L u v x : ℤ) :
     swapClasses L u v (L+x) = L + swapClasses L u v x := by
   simp only [swapClasses, Int.modulus_add_modEq_iff]
   split <;> (try split) <;> omega
 
-private theorem close_congruent {L x y : ℤ} (lo : -L < y-x) (hi : y-x < L)
+theorem close_congruent {L x y : ℤ} (lo : -L < y-x) (hi : y-x < L)
     (h : x ≡ y [ZMOD L]) : x = y := by
   have he := Int.eq_zero_of_abs_lt_dvd h.dvd (abs_lt.mpr ⟨lo,hi⟩)
   omega

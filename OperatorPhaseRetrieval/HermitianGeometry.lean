@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HermitianCentering
-import OperatorPhaseRetrieval.HaarHermitianMoments
+module
+
+public import OperatorPhaseRetrieval.HermitianCentering
+public import OperatorPhaseRetrieval.HaarHermitianMoments
+
+@[expose] public section
 
 noncomputable section
 

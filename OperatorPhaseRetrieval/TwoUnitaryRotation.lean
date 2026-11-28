@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.TwoUnitaryFourier
-import OperatorPhaseRetrieval.NearIdentity
+module
+
+public import OperatorPhaseRetrieval.TwoUnitaryFourier
+public import OperatorPhaseRetrieval.NearIdentity
+
+@[expose] public section
 
 /-! Small unitary rotations which extract a prescribed commutator. -/
 noncomputable section
@@ -79,7 +83,7 @@ theorem exists_step (V R : Op) (N P : ℤ) (δ : ℝ) (hδ : 0 < δ) (hV : IsUni
   change ‖star W * C‖ ≤ 2 ∧ ‖star W * C - C‖ < 2*δ
   constructor
   · rwa [CStarRing.norm_mem_unitary_mul _ (Unitary.star_mem hW)]
-  · have hs : ‖star W - 1‖ = ‖W-1‖ := by rw [← star_one (R := Op), ← star_sub, norm_star, star_one]
+  · have hs : ‖star W - 1‖ = ‖W-1‖ := by rw [← norm_star (W - 1), star_sub, star_one]
     calc
       ‖star W * C - C‖ = ‖(star W - 1)*C‖ := by rw [sub_mul, one_mul]
       _ ≤ ‖star W - 1‖ * ‖C‖ := norm_mul_le _ _

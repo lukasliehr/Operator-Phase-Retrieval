@@ -24,7 +24,7 @@ where $d(\psi,\varphi) = \min_{\theta \in \mathbb{R}} \lVert \psi - e^{i\theta}\
 
 Theorems A and B are the two main results of the paper. The correspondence with the Lean declarations is:
 
-| Statement | Declaration in `Showcase.lean` |
+| Statement | Declaration in `Challenge.lean` |
 | --- | --- |
 | Theorem A | `uniqueness_from_two_measurements` |
 | Theorem B | `stability_from_five_measurements` |
@@ -32,21 +32,22 @@ Theorems A and B are the two main results of the paper. The correspondence with 
 
 ## Lean entry points
 
-- [Showcase.lean](Showcase.lean): self-contained formulation of the three theorems, with all definitions needed to read them. It imports only Mathlib and uses `sorry` in place of the proofs. In this file, `Operator μ` denotes the bounded linear operators on `L²(μ)`, the expression `![1, U]` is the pair consisting of the identity and `U`, a function on `Fin m` is an `m`-tuple whose indices start at `0`, and `⨅`, `⨆` denote infimum and supremum.
-- [Showcase_WithProofs.lean](Showcase_WithProofs.lean): the same definitions and statements as in `Showcase.lean`, with every `sorry` replaced by a proof. The three theorems depend only on the axioms `propext`, `Classical.choice` and `Quot.sound`.
-- [OperatorPhaseRetrieval/MainTheorems.lean](OperatorPhaseRetrieval/MainTheorems.lean): the three theorems in the formulation of the showcase. Theorem A is derived from [OperatorPhaseRetrieval/TwoUnitaryMain.lean](OperatorPhaseRetrieval/TwoUnitaryMain.lean), and Theorems B and C from the proof assembly in [OperatorPhaseRetrieval/SeparableAtomless.lean](OperatorPhaseRetrieval/SeparableAtomless.lean).
+- [Challenge.lean](Challenge.lean): self-contained formulation of the three theorems, with all definitions needed to read them. It imports only Mathlib and uses `sorry` in place of the proofs. In this file, `Operator μ` denotes the bounded linear operators on `L²(μ)`, the expression `![1, U]` is the pair consisting of the identity and `U`, a function on `Fin m` is an `m`-tuple whose indices start at `0`, and `⨅`, `⨆` denote infimum and supremum.
+- [Solution.lean](Solution.lean): the same definitions and statements as in `Challenge.lean`, with every `sorry` replaced by a proof. The three theorems depend only on the axioms `propext`, `Classical.choice` and `Quot.sound`.
+- [OperatorPhaseRetrieval/MainTheorems.lean](OperatorPhaseRetrieval/MainTheorems.lean): the three theorems in the formulation of `Challenge.lean`. Theorem A is derived from [OperatorPhaseRetrieval/TwoUnitaryMain.lean](OperatorPhaseRetrieval/TwoUnitaryMain.lean), and Theorems B and C from the proof assembly in [OperatorPhaseRetrieval/SeparableAtomless.lean](OperatorPhaseRetrieval/SeparableAtomless.lean).
 - [OperatorPhaseRetrieval.lean](OperatorPhaseRetrieval.lean): root module of the internal library `OperatorPhaseRetrieval`.
-- [comparator.json](comparator.json): Comparator configuration pairing the two showcase files.
+- [comparator.json](comparator.json): Comparator configuration pairing `Challenge.lean` and `Solution.lean`.
+- [formalization.yaml](formalization.yaml): metadata for the [Palomar](https://palomar-registry.org) registry.
 
 ## Build
 
-The project uses Lean `v4.33.0` and a pinned Mathlib commit (see `lean-toolchain` and `lake-manifest.json`). With [Lean](https://lean-lang.org/install/) installed, run the following commands.
+The project uses Lean `v4.35.0` and a pinned Mathlib commit (see `lean-toolchain` and `lake-manifest.json`). With [Lean](https://lean-lang.org/install/) installed, run the following commands.
 
 ```bash
-git clone https://github.com/lukasliehr/Informational-Completeness.git
+git clone --branch palomar https://github.com/lukasliehr/Informational-Completeness.git
 cd Informational-Completeness
 lake exe cache get
 lake build
 ```
 
-The command `lake exe cache get` downloads the prebuilt Mathlib cache, and `lake build` compiles the library and both showcase files. Building `Showcase.lean` reports three uses of `sorry`, which are the intended placeholders.
+The command `lake exe cache get` downloads the prebuilt Mathlib cache, and `lake build` compiles the library, `Challenge.lean` and `Solution.lean`. Building `Challenge.lean` reports three uses of `sorry`, which are the intended placeholders.

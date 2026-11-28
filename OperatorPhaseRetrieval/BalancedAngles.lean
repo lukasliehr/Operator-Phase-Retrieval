@@ -1,4 +1,9 @@
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+module
+
+public import OperatorPhaseRetrieval.MathlibImports
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+
+@[expose] public section
 
 noncomputable section
 

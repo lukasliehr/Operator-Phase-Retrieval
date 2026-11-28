@@ -1,6 +1,10 @@
-import OperatorPhaseRetrieval.FiniteProbabilityL2
-import OperatorPhaseRetrieval.GaussianSphere
-import OperatorPhaseRetrieval.ExpressionModels
+module
+
+public import OperatorPhaseRetrieval.FiniteProbabilityL2
+public import OperatorPhaseRetrieval.GaussianSphere
+public import OperatorPhaseRetrieval.ExpressionModels
+
+@[expose] public section
 
 /-! The six independent Haar matrices as actual normalized finite L² models. -/
 
@@ -16,6 +20,11 @@ variable (ι : Type*) [Fintype ι]
 def haarSixProbability : ProbabilityMeasure (Fin 6 → HaarUnitary (EuclideanSpace ℂ ι)) :=
   ⟨Measure.pi (fun _ : Fin 6 => (haarUnitaryProbability (EuclideanSpace ℂ ι) : Measure (HaarUnitary (EuclideanSpace ℂ ι)))),
     inferInstance⟩
+
+instance haarSixProbability_isFiniteMeasureOnCompacts :
+    IsFiniteMeasureOnCompacts
+      (haarSixProbability ι : Measure (Fin 6 → HaarUnitary (EuclideanSpace ℂ ι))) :=
+  ⟨fun _ _ => measure_lt_top _ _⟩
 
 theorem haarSix_tail_measurePreserving :
     MeasurePreserving (fun U : Fin 6 → HaarUnitary (EuclideanSpace ℂ ι) => fun j : Fin 5 => U j.succ)
@@ -83,7 +92,7 @@ theorem finiteHaarSeed_gaussian_law :
   have hf : ‖f‖ = 1 := by simp [f, Lp.norm_const]
   let scale : EuclideanSpace ℂ ι → (ι → ℂ) := fun z i => Real.sqrt (Fintype.card ι) • z i
   have hm : Measurable scale := by
-    apply measurable_pi_lambda
+    apply measurable_pi_iff.mpr
     intro i
     change Measurable (fun z : EuclideanSpace ℂ ι => (Real.sqrt (Fintype.card ι) : ℝ) • z i)
     exact ((PiLp.continuous_apply 2 (fun _ : ι => ℂ) i).const_smul (Real.sqrt (Fintype.card ι))).measurable

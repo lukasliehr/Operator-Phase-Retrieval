@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.BoundedHaarDirections
+module
+
+public import OperatorPhaseRetrieval.BoundedHaarDirections
+
+@[expose] public section
 
 noncomputable section
 

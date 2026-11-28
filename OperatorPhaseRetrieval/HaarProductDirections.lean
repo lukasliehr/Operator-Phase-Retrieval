@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.HaarHermitianVariance
-import OperatorPhaseRetrieval.IndependentSecondMoments
+module
+
+public import OperatorPhaseRetrieval.HaarHermitianVariance
+public import OperatorPhaseRetrieval.IndependentSecondMoments
+
+@[expose] public section
 
 noncomputable section
 

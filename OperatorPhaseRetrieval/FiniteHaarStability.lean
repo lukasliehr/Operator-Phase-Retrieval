@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.PairModulus
-import OperatorPhaseRetrieval.VolumetricNet
+module
+
+public import OperatorPhaseRetrieval.PairModulus
+public import OperatorPhaseRetrieval.VolumetricNet
+
+@[expose] public section
 
 noncomputable section
 
@@ -31,7 +35,7 @@ theorem haarFive_point_failure_le (hn : 3 ≤ Fintype.card ι)
   rw [he, Measure.pi_pi]
   calc
     _ ≤ ∏ _j : Fin 5, ENNReal.ofReal ((2 : ℝ) ^ (11 * Fintype.card ι) * t ^ (Fintype.card ι - 3)) :=
-      Finset.prod_le_prod' (fun _ _ => hA)
+      Finset.prod_le_prod (fun _ _ => hA)
     _ = _ := by simp [ENNReal.ofReal_pow (by positivity : 0 ≤ (2 : ℝ) ^ (11 * Fintype.card ι) * t ^ (Fintype.card ι - 3))]
 
 theorem haarFive_finite_failure_le (hn : 3 ≤ Fintype.card ι) (s : Finset (UnitaryPair ι))

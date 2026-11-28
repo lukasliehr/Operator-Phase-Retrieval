@@ -1,4 +1,8 @@
-import OperatorPhaseRetrieval.ExpressionBounds
+module
+
+public import OperatorPhaseRetrieval.ExpressionBounds
+
+@[expose] public section
 
 /-! # Hilbert--Schmidt bounds for the finite-dimensional models -/
 

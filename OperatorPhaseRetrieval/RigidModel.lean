@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.PolynomialBasis
-import OperatorPhaseRetrieval.ProductApproximation
+module
+
+public import OperatorPhaseRetrieval.PolynomialBasis
+public import OperatorPhaseRetrieval.ProductApproximation
+
+@[expose] public section
 
 noncomputable section
 

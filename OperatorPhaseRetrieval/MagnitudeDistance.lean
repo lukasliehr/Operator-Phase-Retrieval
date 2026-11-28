@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.AmplificationTheorem
-import OperatorPhaseRetrieval.Instability
+module
+
+public import OperatorPhaseRetrieval.AmplificationTheorem
+public import OperatorPhaseRetrieval.Instability
+
+@[expose] public section
 
 noncomputable section
 
@@ -13,14 +17,14 @@ def alignScalar (a b : ℂ) : ℂ := if a = 0 then b else (‖b‖/‖a‖ : ℝ
 theorem alignScalar_norm (a b : ℂ) : ‖alignScalar a b‖ = ‖b‖ := by
   by_cases ha : a = 0
   · simp [alignScalar, ha]
-  · rw [alignScalar, if_neg ha, norm_smul, Real.norm_eq_abs,
+  · rw [alignScalar, ite_eq_right ha, norm_smul, Real.norm_eq_abs,
       abs_of_nonneg (div_nonneg (norm_nonneg b) (norm_nonneg a)),
       div_mul_cancel₀ _ (norm_ne_zero_iff.mpr ha)]
 
 theorem alignScalar_distance (a b : ℂ) : ‖a - alignScalar a b‖ = |‖a‖ - ‖b‖| := by
   by_cases ha : a = 0
   · simp [alignScalar,ha]
-  · rw [alignScalar, if_neg ha]
+  · rw [alignScalar, ite_eq_right ha]
     have he : a - (‖b‖/‖a‖ : ℝ) • a = (1-‖b‖/‖a‖ : ℝ) • a := by module
     rw [he,norm_smul,Real.norm_eq_abs]
     calc

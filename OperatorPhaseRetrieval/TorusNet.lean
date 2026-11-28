@@ -1,5 +1,9 @@
-import OperatorPhaseRetrieval.SphereCaps
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import OperatorPhaseRetrieval.SphereCaps
+public import Mathlib.Analysis.Real.Pi.Bounds
+
+@[expose] public section
 
 /-!
 # Phase grids and conditional small-ball estimates
